@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+}
+
+.group3 {
+  position: relative;
+  width: 181px;
+  height: 64px;
+
+  .subtract {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0px 15px 9px 22px;
+    width: 181px;
+    height: 64px;
+    background-image: url(../image/mmk1noca-ruj7yhf.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .text {
+      width: 92px;
+      height: 55px;
+      line-height: 70px;
+      letter-spacing: 0.66px;
+      color: #ffffff;
+      font-family: "Abhaya Libre Medium", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 22px;
+    }
+
+    .arrow3 {
+      margin-top: 32px;
+      width: 18px;
+      height: 2px;
+    }
+  }
+
+  .line2 {
+    position: absolute;
+    top: 32px;
+    left: 116px;
+    background: #ffffff;
+    width: 33px;
+    height: 2px;
+    rotate: 90deg;
+  }
+}

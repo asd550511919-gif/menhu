@@ -1,0 +1,174 @@
+* {
+  box-sizing: border-box;
+}
+
+.frame4 {
+  position: relative;
+  background: #ffffff;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+
+  .frame2 {
+    display: flex;
+    position: absolute;
+    top: -20px;
+    left: -36px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 122px 105px 36px;
+    width: 2078px;
+    height: 1175px;
+    background-image: url(../image/mmk8bemy-qjbu3dn.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .world {
+      line-height: 24px;
+      letter-spacing: -0.4px;
+      color: #9a9a9a;
+      font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 20px;
+    }
+
+    .rectangle1 {
+      display: flex;
+      align-items: flex-start;
+      align-self: stretch;
+      padding: 40px 46px 237px 61px;
+      background-image: linear-gradient(180deg, #000000 0%, #00000000 100%);
+
+      .frame {
+        margin-top: 12px;
+        margin-left: 770px;
+        width: 190px;
+        height: 22px;
+        overflow: hidden;
+      }
+
+      .travel {
+        margin: 12px 0px 0px 744px;
+        line-height: 24px;
+        letter-spacing: -0.4px;
+        color: #9a9a9a;
+        font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+        font-size: 20px;
+      }
+    }
+
+    .autoWrapper {
+      display: flex;
+      align-items: flex-start;
+      align-self: stretch;
+      justify-content: space-between;
+      margin-top: 708px;
+      padding-right: 46px;
+      padding-left: 61px;
+
+      .siteByArcanusTravel {
+        margin: 5px 0px 0px;
+        width: 547px;
+        text-align: right;
+        letter-spacing: -0.4px;
+        color: #9a9a9a;
+        font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+        font-size: 20px;
+      }
+    }
+  }
+
+  .frame3 {
+    display: flex;
+    position: absolute;
+    top: -242px;
+    left: -985px;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 805px 226px 880px 1320px;
+    width: 2969px;
+    height: 1843px;
+    background-image: url(../image/mmk8bemy-88f4bzx.png);
+    background-position: -1px -64px;
+    background-size: 100.02% 100%;
+    background-repeat: no-repeat;
+
+    .autoWrapper2 {
+      position: absolute;
+      top: 636px;
+      left: 1297px;
+      width: 1239px;
+      height: 272px;
+
+      .rectangle {
+        position: absolute;
+        top: 0;
+        left: 993px;
+        width: 246px;
+        height: 272px;
+        overflow: hidden;
+      }
+
+      .rectangle2 {
+        position: absolute;
+        top: 9px;
+        left: 0;
+        width: 204px;
+        height: 179px;
+        overflow: hidden;
+      }
+    }
+
+    .autoWrapper3 {
+      display: flex;
+      position: relative;
+      align-items: flex-start;
+      align-self: stretch;
+      justify-content: space-between;
+
+      .text {
+        width: 340px;
+        height: 67px;
+        text-align: center;
+        letter-spacing: -0.64px;
+        color: #e3d2ab;
+        font-family: "Source Han Serif CN", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+        font-size: 32px;
+        font-weight: 500;
+      }
+
+      .group4 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .miradaTravel {
+          margin: 0px 0px 0px 32px;
+          width: 318px;
+          height: 50px;
+          letter-spacing: -0.88px;
+          color: #e3d2ab;
+          font-family: "Cormorant SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+          font-size: 44px;
+        }
+      }
+
+      .group5 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 41px;
+
+        .originTravel {
+          margin: 0px 0px 0px 33px;
+          width: 318px;
+          height: 50px;
+          letter-spacing: -0.88px;
+          color: #e3d2ab;
+          font-family: "Cormorant SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+          font-size: 44px;
+        }
+      }
+    }
+  }
+}

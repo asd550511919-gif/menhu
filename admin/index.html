@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理 - 作品列表</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Albert+Sans:wght@400;800&family=Abhaya+Libre+Medium&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/nav-widget.css">
+    <style>
+        body {
+            font-family: 'Albert Sans', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .header-bar {
+            background: #000;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo img {
+            height: 40px;
+            width: auto;
+            max-width: none;
+            overflow: visible;
+        }
+
+        .header-user-actions button {
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+        }
+
+        .layout {
+            display: flex;
+            max-width: 1400px;
+            margin: 2rem auto;
+            align-items: flex-start;
+            padding: 0 1rem;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-right: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar-menu a {
+            display: block;
+            padding: 0.8rem 1rem;
+            color: #666;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background: #000;
+            color: white;
+        }
+        
+        .main-content {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .brand-filter {
+            display: flex;
+            background: #f5f5f5;
+            padding: 4px;
+            border-radius: 8px;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #666;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active {
+            background: white;
+            color: #000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            font-weight: 600;
+        }
+
+        .add-btn {
+            padding: 0.8rem 1.5rem;
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .add-btn:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            font-weight: 800;
+            color: #000;
+        }
+
+        .tag {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .tag-mirada {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+        
+        .tag-origin {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        td img {
+            height: 50px;
+            width: auto;
+            border-radius: 4px;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            transition: all 0.2s;
+        }
+
+        .edit {
+            background: #f0f0f0;
+            color: #333;
+            margin-right: 0.5rem;
+        }
+        
+        .delete {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 500px;
+            max-width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        
+        .hint {
+            display: block;
+            margin-top: 0.5rem;
+            color: #888;
+            font-size: 0.85rem;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .actions button {
+            padding: 0.8rem 1.5rem;
+            font-weight: 600;
+        }
+        
+        .actions button[type="submit"] {
+            background: #000;
+            color: white;
+        }
+
+        /* Image Preview in Modal */
+        .img-preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .img-preview-item {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            cursor: move;
+        }
+        
+        .img-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .remove-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .replace-btn {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            font-size: 10px;
+            text-align: center;
+            padding: 2px 0;
+            display: none;
+            cursor: pointer;
+        }
+        
+        .img-preview-item:hover .replace-btn {
+            display: block;
+        }
+        
+        .add-img-btn {
+            width: 80px;
+            height: 80px;
+            border: 2px dashed #ddd;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #aaa;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .add-img-btn:hover {
+            border-color: #000;
+            color: #000;
+        }
+        
+        .dragging {
+            opacity: 0.5;
+        }
+        
+        .drag-over {
+            border: 2px dashed #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-bar">
+        <div class="header-logo">
+            <img src="../images/origin-logo.svg" alt="Logo">
+        </div>
+        <div class="header-user-actions">
+            <span id="user-info" style="margin-right: 1rem; opacity: 0.8;">管理员</span>
+            <button onclick="logout()" style="background: rgba(255,255,255,0.2); font-size: 0.9rem;">退出登录</button>
+        </div>
+    </div>
+
+    <div class="layout">
+        <div class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a class="active" onclick="switchCategory('work')">作品管理 (Works)</a></li>
+                <li><a onclick="switchCategory('brand_manual')">品牌手册 (Brand Manual)</a></li>
+                <li><a onclick="switchCategory('resource')">资源优势 (Resources)</a></li>
+            </ul>
+        </div>
+        
+        <div class="main-content">
+            <div class="page-header">
+                <h1 id="page-title">作品管理</h1>
+                <div class="header-controls">
+                    <div class="brand-filter">
+                        <button class="filter-btn active" onclick="filterBrand('all')">全部</button>
+                        <button class="filter-btn" onclick="filterBrand('mirada')">西葡</button>
+                        <button class="filter-btn" onclick="filterBrand('origin')">本源</button>
+                    </div>
+                    <button class="add-btn" onclick="openModal()">+ 添加新项目</button>
+                </div>
+            </div>
+            
+            <table id="works-table">
+                <thead>
+                    <tr>
+                        <th>标题</th>
+                        <th>品牌</th>
+                        <th class="th-ticket">封面</th>
+                        <th>详情图数</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Content populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>添加新项目</h2>
+            </div>
+            <form id="add-form">
+                <div class="form-group">
+                    <label>标题</label>
+                    <input type="text" name="title" required placeholder="例如：品牌手册 2024">
+                </div>
+                <div class="form-group">
+                    <label>所属品牌</label>
+                    <select name="brand" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 6px;">
+                        <option value="mirada">Mirada Travel (西葡)</option>
+                        <option value="origin">Origin Travel (本源)</option>
+                    </select>
+                </div>
+                <!-- Hidden Category Input -->
+                <input type="hidden" name="category" id="add-category">
+                
+                <div class="form-group" id="add-ticket-group">
+                    <label>封面图 (Optional)</label>
+                    <input type="file" name="ticket" accept="image/png, image/jpeg">
+                    <span class="hint">作品类必填，手册/资源类可选</span>
+                </div>
+                <div class="form-group">
+                    <label>详情页图片 (轮播展示)</label>
+                    <input type="file" name="details" accept="image/png, image/jpeg" multiple required>
+                    <span class="hint">建议尺寸：1920 x 1080 px</span>
+                </div>
+                <div class="actions">
+                    <button type="button" onclick="closeModal()" style="background: #eee; color: #333;">取消</button>
+                    <button type="submit">保存并上传</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal" id="edit-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>编辑作品</h2>
+            </div>
+            <form id="edit-form">
+                <input type="hidden" name="id" id="edit-id">
+                <div class="form-group">
+                    <label>作品标题</label>
+                    <input type="text" name="title" id="edit-title" required>
+                </div>
+                <div class="form-group">
+                    <label>所属品牌</label>
+                    <select name="brand" id="edit-brand">
+                        <option value="mirada">Mirada Travel (西葡)</option>
+                        <option value="origin">Origin Travel (本源)</option>
+                    </select>
+                </div>
+                <div class="form-group" id="edit-ticket-group">
+                    <label>封面图片</label>
+                    <div id="edit-ticket-preview" class="img-preview-container" style="margin-bottom: 5px;"></div>
+                    <input type="file" id="ticket-upload-input" accept="image/png, image/jpeg" style="display: none;">
+                    <button type="button" onclick="document.getElementById('ticket-upload-input').click()" style="background: #eee; color: #333; border: 1px solid #ccc; width: auto; font-size: 0.9rem;">更换/上传图片</button>
+                </div>
+                <div class="form-group">
+                    <label>详情页图片 (可拖拽排序)</label>
+                    <div id="edit-details-preview" class="img-preview-container"></div>
+                    <input type="file" id="detail-upload-input" accept="image/png, image/jpeg" multiple style="display: none;">
+                    <span class="hint">提示: 拖拽图片可调整顺序。点击 '+' 添加更多。悬停可替换或删除。</span>
+                </div>
+                <div class="actions">
+                    <button type="button" onclick="closeEditModal()" style="background: #eee; color: #333;">取消</button>
+                    <button type="submit">保存修改</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Auth Check
+        if (!localStorage.getItem('adminToken')) {
+            window.location.href = 'login.html';
+        }
+
+        const API_URL = 'http://localhost:3000/api/works';
+
+        function logout() {
+            localStorage.removeItem('adminToken');
+            window.location.href = 'login.html';
+        }
+
+        let currentCategory = 'work';
+        let currentBrand = 'all';
+
+        function switchCategory(category) {
+            currentCategory = category;
+            
+            // Update UI
+            document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+            // Try to find the element that triggered this, if any
+            if (event && event.target) {
+                event.target.classList.add('active');
+            } else {
+                // Fallback if called programmatically
+                const links = document.querySelectorAll('.sidebar-menu a');
+                if (category === 'work') links[0].classList.add('active');
+                if (category === 'brand_manual') links[1].classList.add('active');
+                if (category === 'resource') links[2].classList.add('active');
+            }
+            
+            const titles = {
+                'work': '作品管理',
+                'brand_manual': '品牌手册管理',
+                'resource': '资源优势管理'
+            };
+            document.getElementById('page-title').textContent = titles[category];
+            
+            loadWorks();
+        }
+
+        function filterBrand(brand) {
+            currentBrand = brand;
+            
+            // Update Filter UI
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            const buttons = document.querySelectorAll('.filter-btn');
+            if (brand === 'all') buttons[0].classList.add('active');
+            else if (brand === 'mirada') buttons[1].classList.add('active');
+            else if (brand === 'origin') buttons[2].classList.add('active');
+
+            loadWorks();
+        }
+
+        async function loadWorks() {
+            try {
+                let url = `${API_URL}?category=${currentCategory}`;
+                if (currentBrand !== 'all') {
+                    url += `&brand=${currentBrand}`;
+                }
+
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('Network response was not ok');
+                const works = await res.json();
+                window.currentWorks = works; // Store for edit modal
+                
+                const tbody = document.querySelector('#works-table tbody');
+                tbody.innerHTML = '';
+                
+                if (works.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">暂无数据</td></tr>';
+                    // Don't return here, let headers update logic run if needed, but headers are static usually.
+                    // Actually we need to toggle the header visibility based on category
+                }
+                
+                // Toggle Ticket Column visibility
+                const showTicket = currentCategory === 'work';
+                document.querySelector('.th-ticket').style.display = showTicket ? '' : 'none';
+
+                if (works.length === 0) return;
+
+                works.forEach(work => {
+                    const tr = document.createElement('tr');
+                    const ticketPath = work.ticketImage ? `../${work.ticketImage}` : '';
+                    const brandLabel = work.brand === 'origin' ? '本源 (Origin)' : '西葡 (Mirada)';
+                    const brandClass = work.brand === 'origin' ? 'tag-origin' : 'tag-mirada';
+                    
+                    let ticketCell = '';
+                    if (showTicket) {
+                        ticketCell = `<td>${ticketPath ? `<img src="${ticketPath}" alt="${work.title}">` : '<span style="color:#ccc; font-size:0.8rem;">无封面</span>'}</td>`;
+                    }
+                    
+                    tr.innerHTML = `
+                        <td style="font-weight: 600;">${work.title}</td>
+                        <td><span class="tag ${brandClass}">${brandLabel}</span></td>
+                        ${ticketCell}
+                        <td style="text-align: center;">${work.detailImages ? work.detailImages.length : 0}</td>
+                        <td>
+                            <button class="edit" onclick="openEditModal('${work.id}')">编辑</button>
+                            <button class="delete" onclick="deleteWork('${work.id}')">删除</button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (err) {
+                console.error('Failed to load works:', err);
+                // alert('加载列表失败'); // Optional: disable alert to avoid annoyance if it's just a momentary glitch
+            }
+        }
+
+        async function deleteWork(id) {
+            if (!confirm('确定要删除该作品吗？此操作不可恢复。')) return;
+            try {
+                const res = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+                if (res.ok) {
+                    loadWorks();
+                } else {
+                    alert('删除失败');
+                }
+            } catch (err) {
+                alert('删除出错');
+            }
+        }
+
+        function openModal() {
+            document.getElementById('modal').style.display = 'flex';
+            // Pre-select category and brand
+            document.getElementById('add-category').value = currentCategory;
+            
+            const brandSelect = document.querySelector('#add-form select[name="brand"]');
+            if (currentBrand !== 'all') {
+                brandSelect.value = currentBrand;
+            } else {
+                brandSelect.value = 'mirada'; // Default
+            }
+
+            // Adjust form hints based on category
+            const ticketGroup = document.getElementById('add-ticket-group');
+            if (currentCategory === 'work') {
+                ticketGroup.style.display = 'block';
+                ticketGroup.querySelector('input').required = true;
+                ticketGroup.querySelector('.hint').textContent = '作品类必填';
+            } else {
+                ticketGroup.style.display = 'none';
+                ticketGroup.querySelector('input').required = false;
+                ticketGroup.querySelector('input').value = ''; // Reset value
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('add-form').reset();
+        }
+
+        // State for editing
+        let editState = {
+            ticketImage: null, // { type: 'existing', url: '...' } or { type: 'new', file: ... }
+            detailImages: []   // Array of { type: 'existing', url: '...' } or { type: 'new', file: ... }
+        };
+
+        function openEditModal(workId) {
+            const work = window.currentWorks.find(w => w.id === workId);
+            if (!work) return;
+
+            document.getElementById('edit-id').value = work.id;
+            document.getElementById('edit-title').value = work.title;
+            document.getElementById('edit-brand').value = work.brand || 'mirada';
+            
+            // Initialize State
+            editState.ticketImage = work.ticketImage ? { type: 'existing', url: work.ticketImage } : null;
+            editState.detailImages = (work.detailImages || []).map(img => ({ type: 'existing', url: img }));
+            
+            // Toggle Ticket input in Edit Modal based on currentCategory
+            const ticketGroup = document.getElementById('edit-ticket-group');
+            if (currentCategory === 'work') {
+                ticketGroup.style.display = 'block';
+            } else {
+                ticketGroup.style.display = 'none';
+            }
+            
+            renderEditPreview();
+            document.getElementById('edit-modal').style.display = 'flex';
+        }
+
+        function renderEditPreview() {
+            // Render Ticket
+            const ticketContainer = document.getElementById('edit-ticket-preview');
+            ticketContainer.innerHTML = '';
+            if (editState.ticketImage) {
+                const src = editState.ticketImage.type === 'existing' ? `../${editState.ticketImage.url}` : URL.createObjectURL(editState.ticketImage.file);
+                ticketContainer.innerHTML = `
+                    <div class="img-preview-item">
+                        <img src="${src}">
+                        <div class="remove-btn" onclick="removeTicketImage()">×</div>
+                    </div>
+                `;
+            }
+
+            // Render Details
+            const detailsContainer = document.getElementById('edit-details-preview');
+            detailsContainer.innerHTML = '';
+            editState.detailImages.forEach((img, index) => {
+                const src = img.type === 'existing' ? `../${img.url}` : URL.createObjectURL(img.file);
+                const div = document.createElement('div');
+                div.className = 'img-preview-item';
+                div.draggable = true;
+                div.dataset.index = index;
+                div.innerHTML = `
+                    <img src="${src}">
+                    <div class="remove-btn" onclick="removeDetailImage(${index})">×</div>
+                    <div class="replace-btn" onclick="triggerReplaceDetail(${index})">替换</div>
+                `;
+                
+                // Drag Events
+                div.addEventListener('dragstart', handleDragStart);
+                div.addEventListener('dragover', handleDragOver);
+                div.addEventListener('drop', handleDrop);
+                div.addEventListener('dragenter', handleDragEnter);
+                div.addEventListener('dragleave', handleDragLeave);
+                div.addEventListener('dragend', handleDragEnd);
+
+                detailsContainer.appendChild(div);
+            });
+
+            // Add Button
+            const addBtn = document.createElement('div');
+            addBtn.className = 'add-img-btn';
+            addBtn.innerHTML = '+';
+            addBtn.onclick = () => {
+                const input = document.getElementById('detail-upload-input');
+                input.removeAttribute('data-replace-index');
+                input.click();
+            };
+            detailsContainer.appendChild(addBtn);
+        }
+
+        // Drag and Drop Logic
+        let dragSrcEl = null;
+
+        function handleDragStart(e) {
+            this.classList.add('dragging');
+            dragSrcEl = this;
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', this.dataset.index);
+        }
+
+        function handleDragOver(e) {
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+            e.dataTransfer.dropEffect = 'move';
+            return false;
+        }
+
+        function handleDragEnter(e) {
+            this.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            this.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            }
+            
+            this.classList.remove('drag-over');
+
+            if (dragSrcEl !== this) {
+                const srcIndex = parseInt(e.dataTransfer.getData('text/plain'));
+                const destIndex = parseInt(this.dataset.index);
+                
+                // Reorder array
+                const item = editState.detailImages[srcIndex];
+                editState.detailImages.splice(srcIndex, 1);
+                editState.detailImages.splice(destIndex, 0, item);
+                
+                renderEditPreview();
+            }
+            return false;
+        }
+
+        function handleDragEnd(e) {
+            this.classList.remove('dragging');
+            document.querySelectorAll('.img-preview-item').forEach(item => {
+                item.classList.remove('drag-over');
+            });
+        }
+
+        // Ticket Actions
+        document.getElementById('ticket-upload-input').addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+                editState.ticketImage = { type: 'new', file: this.files[0] };
+                renderEditPreview();
+            }
+            this.value = ''; // Reset
+        });
+
+        function removeTicketImage() {
+            editState.ticketImage = null;
+            renderEditPreview();
+        }
+
+        // Detail Actions
+        document.getElementById('detail-upload-input').addEventListener('change', function(e) {
+            if (this.files && this.files.length > 0) {
+                // If replacing specific index
+                if (this.getAttribute('data-replace-index') !== null) {
+                    const idx = parseInt(this.getAttribute('data-replace-index'));
+                    editState.detailImages[idx] = { type: 'new', file: this.files[0] };
+                    this.removeAttribute('data-replace-index');
+                } else {
+                    // Appending
+                    Array.from(this.files).forEach(file => {
+                        editState.detailImages.push({ type: 'new', file: file });
+                    });
+                }
+                renderEditPreview();
+            }
+            this.value = ''; // Reset
+        });
+
+        function removeDetailImage(index) {
+            editState.detailImages.splice(index, 1);
+            renderEditPreview();
+        }
+
+        function triggerReplaceDetail(index) {
+            const input = document.getElementById('detail-upload-input');
+            input.setAttribute('data-replace-index', index);
+            input.click();
+        }
+
+        function closeEditModal() {
+            document.getElementById('edit-modal').style.display = 'none';
+            document.getElementById('edit-form').reset();
+            editState = { ticketImage: null, detailImages: [] };
+        }
+
+        // Close modal if clicked outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('modal')) {
+                closeModal();
+            }
+            if (event.target == document.getElementById('edit-modal')) {
+                closeEditModal();
+            }
+        }
+
+        document.getElementById('edit-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.textContent = '保存中...';
+            btn.disabled = true;
+
+            const formData = new FormData();
+            const id = document.getElementById('edit-id').value;
+            
+            formData.append('title', document.getElementById('edit-title').value);
+            formData.append('brand', document.getElementById('edit-brand').value);
+
+            // Handle Ticket
+            if (editState.ticketImage) {
+                if (editState.ticketImage.type === 'new') {
+                    formData.append('ticket', editState.ticketImage.file);
+                }
+                // If existing, we don't need to send file, server keeps it unless we send deleteTicket
+            } else {
+                formData.append('deleteTicket', 'true');
+            }
+
+            // Handle Details
+            // We construct a structure array: ["images/old.png", "NEW_FILE_PLACEHOLDER", ...]
+            // And append new files to 'newDetails'
+            const structure = [];
+            editState.detailImages.forEach(img => {
+                if (img.type === 'existing') {
+                    structure.push(img.url);
+                } else {
+                    structure.push('NEW_FILE_PLACEHOLDER');
+                    formData.append('newDetails', img.file);
+                }
+            });
+            formData.append('detailStructure', JSON.stringify(structure));
+
+            try {
+                const res = await fetch(`${API_URL}/${id}`, {
+                    method: 'PUT',
+                    body: formData
+                });
+                
+                if (res.ok) {
+                    closeEditModal();
+                    loadWorks();
+                    alert('修改成功！');
+                } else {
+                    const data = await res.json();
+                    alert('修改失败: ' + (data.error || '未知错误'));
+                }
+            } catch (err) {
+                console.error(err);
+                alert('修改出错，请检查服务器连接');
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        document.getElementById('add-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.textContent = '上传中...';
+            btn.disabled = true;
+
+            const formData = new FormData(e.target);
+            
+            // Validate file count warning
+            const details = document.querySelector('input[name="details"]').files;
+            if (details.length !== 7) {
+                // Warning only, not blocking
+                if (!confirm(`您选择了 ${details.length} 张详情图，建议数量为 7 张。\n确定要继续吗？`)) {
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                    return;
+                }
+            }
+
+            try {
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (res.ok) {
+                    closeModal();
+                    loadWorks();
+                    alert('作品添加成功！');
+                } else {
+                    const data = await res.json();
+                    alert('上传失败: ' + (data.error || '未知错误'));
+                }
+            } catch (err) {
+                console.error(err);
+                alert('上传出错，请检查服务器连接');
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        loadWorks();
+    </script>
+</body>
+</html>

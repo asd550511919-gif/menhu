@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>问答相关 - Arcanus Travel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Albert+Sans:wght@400;800&family=Abhaya+Libre+Medium&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/common-header.css">
+    <link rel="stylesheet" href="../css/nav-widget.css">
+    <link rel="stylesheet" href="../css/nav-widget-siena.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #060606;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #060606;
+        }
+
+        .frame-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-origin: center center;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .frame-wrapper.fade-out {
+            opacity: 0;
+            transform: scale(1.1) !important;
+        }
+
+        .frame2 {
+            display: flex;
+            align-items: center;
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .group34 {
+            position: relative;
+            margin-left: -1px;
+            width: 1993px;
+            height: 1080px;
+        }
+
+        .vector {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 1px;
+            flex-direction: column;
+            align-items: flex-start;
+            background: #060606;
+            padding: 220px 118px 30px 61px;
+            width: 1992px;
+            height: 1080px;
+            overflow: hidden;
+        }
+
+        .autoWrapper4 {
+            position: relative;
+            margin-left: 133px;
+            width: 1528px;
+            height: 705px;
+        }
+
+        .image123 {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 370px 50px 130px 130px;
+            width: 1528px;
+            height: 705px;
+            background-image: url(../images/faq-bg.png);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .group35 {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .text-cn {
+            width: 354px;
+            letter-spacing: 0;
+            color: #fbf7ef;
+            font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            line-height: 42px;
+        }
+
+        .text-en {
+            width: 354px;
+            letter-spacing: 0;
+            color: #7d7c78;
+            font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            line-height: 28px;
+            margin-top: 8px;
+        }
+
+        .group36 {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .group37 {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .group38 {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .group22 {
+            display: flex;
+            align-items: flex-start;
+            align-self: stretch;
+            justify-content: space-between;
+            margin-top: 96px;
+            min-width: 1813px;
+        }
+
+        .footer-copyright {
+            line-height: 24px;
+            letter-spacing: -0.4px;
+            color: #9a9a9a;
+            font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+
+        .footer-site-by {
+            margin: 5px 0px 0px;
+            width: 547px;
+            text-align: right;
+            letter-spacing: -0.4px;
+            color: #9a9a9a;
+            font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        function scalePage() {
+            const targetWidth = 1920;
+            const targetHeight = 1080;
+            
+            const actualWidth = window.innerWidth;
+            const actualHeight = window.innerHeight;
+            
+            const scaleX = actualWidth / targetWidth;
+            const scaleY = actualHeight / targetHeight;
+            const scale = Math.min(scaleX, scaleY);
+            
+            const wrapper = document.querySelector('.frame-wrapper');
+            const frame2 = document.querySelector('.frame2');
+            
+            if (wrapper && frame2) {
+                wrapper.style.transform = 'scale(' + scale + ')';
+                wrapper.style.width = targetWidth + 'px';
+                wrapper.style.height = targetHeight + 'px';
+                frame2.style.transform = 'none';
+                
+                wrapper.style.opacity = '0';
+                setTimeout(function() {
+                    wrapper.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    wrapper.style.opacity = '1';
+                }, 50);
+            }
+        }
+        
+        function navigateToPage(pageName) {
+            const wrapper = document.querySelector('.frame-wrapper');
+            if (wrapper) {
+                wrapper.classList.add('fade-out');
+                setTimeout(function() {
+                    window.location.href = pageName + '.html';
+                }, 600);
+            }
+        }
+        
+        window.addEventListener('load', scalePage);
+        window.addEventListener('resize', scalePage);
+    </script>
+</head>
+<body>
+    <div class="page-container">
+        <div class="frame-wrapper">
+            <div class="frame2">
+                <div class="group34">
+                    <!-- 共用头部 -->
+                    <div class="common-header">
+                        <div class="header-top-bar">
+                            <img src="../images/faq-logo.svg" class="header-logo" alt="Logo">
+                        </div>
+                        <p class="header-world">World</p>
+                        <p class="header-travel">Travel</p>
+                    </div>
+                    
+                    <div class="vector">
+                        <div class="autoWrapper4">
+                            <div class="image123">
+                                <div class="group35" onclick="navigateToPage('faq-detail')">
+                                    <p class="text-cn">你们的服务<br>包含什么？</p>
+                                    <p class="text-en">What does your service include?</p>
+                                </div>
+                                <div class="group36" onclick="navigateToPage('faq-detail3')">
+                                    <p class="text-cn">我是否可以只单独包车<br>或者只单独预定体验？</p>
+                                    <p class="text-en">Can I charter a car separately or book an experience separately?</p>
+                                </div>
+                                <div class="group37" onclick="navigateToPage('faq-detail2')">
+                                    <p class="text-cn">你们的行程以及相应<br>的报价是多少？</p>
+                                    <p class="text-en">What is your itinerary and corresponding quotation?</p>
+                                </div>
+                                <div class="group38" onclick="navigateToPage('faq-detail4')">
+                                    <p class="text-cn">我如何预定<br>一个行程？</p>
+                                    <p class="text-en">How do I book a trip?</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group22">
+                            <p class="footer-copyright">© Arcanus Travel— All rights reserved</p>
+                            <p class="footer-site-by">Site by: Arcanus Travel</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="nav-widget">
+        <div class="nav-widget-container">
+            <div class="nav-widget-item nav-widget-menu-btn">
+                <div data-hover="bggrow" data-menu="maintrigger" class="mmenu-col btn">
+                    <div class="menu-icon-w">
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                    </div>
+                    <div class="menu-dots-w">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 103 103" width="100%">
+                            <path d="M103 94V9a9 9 0 0 1-9-9H9a9 9 0 0 1-9 9v85a9 9 0 0 1 9 9h85a9 9 0 0 1 9-9Z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="home1.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">首页</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="works.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">作品展示</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="about.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">关于我们</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="faq.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">问答相关</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/nav-widget.js"></script>
+    <script src="../js/common-interactions.js"></script>
+    </body>
+</html>

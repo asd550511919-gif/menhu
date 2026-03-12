@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>本源旅行 作品集 - Arcanus Travel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Albert+Sans:wght@400;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/common-header.css">
+    <link rel="stylesheet" href="../css/nav-widget.css">
+    <link rel="stylesheet" href="../css/nav-widget-siena.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .frame-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-origin: center center;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .frame-wrapper.fade-out {
+            opacity: 0;
+            transform: scale(1.1) !important;
+        }
+
+        .frame3 {
+            position: relative;
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        /* 背景图 */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(../images/origin-bg.png);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            opacity: 0.5;
+        }
+
+        /* 底部渐变 */
+        .gradient-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 344px;
+            background-image: linear-gradient(0deg, #000000 0%, transparent 100%);
+            z-index: 5;
+        }
+
+        /* 电影票轮播容器 */
+        .gallery-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1600px;
+            height: 800px;
+            perspective: 1500px;
+            z-index: 10;
+        }
+
+        /* 电影票卡片 */
+        .ticket-card {
+            position: absolute;
+            width: 1590.71px;
+            height: 335.16px;
+            left: 50%;
+            transform: translateX(calc(-50% + 150px));
+            filter: drop-shadow(7.66962px 12.2714px 7.36283px rgba(0, 0, 0, 0.3));
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .ticket-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* 上方卡片 */
+        .ticket-card.position-top {
+            top: -320px;
+            transform: translateX(calc(-50% + 450px)) rotate(2deg) scale(1.5);
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        /* 中间卡片（当前选中） */
+        .ticket-card.position-center {
+            top: 50%;
+            transform: translateX(calc(-50% + 450px)) translateY(-50%) rotate(0deg) scale(1.6);
+            opacity: 1;
+            z-index: 3;
+            pointer-events: auto;
+        }
+
+        /* 下方卡片 */
+        .ticket-card.position-bottom {
+            bottom: -320px;
+            transform: translateX(calc(-50% + 450px)) rotate(-2deg) scale(1.5);
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        /* 隐藏的卡片 */
+        .ticket-card.hidden {
+            opacity: 0;
+            transform: translateX(calc(-50% + 450px)) scale(0.5);
+            z-index: 0;
+        }
+
+        /* 向下箭头按钮 */
+        .scroll-arrow {
+            position: absolute;
+            bottom: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 82px;
+            height: 82px;
+            z-index: 25;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .scroll-arrow:hover {
+            transform: translateX(-50%) scale(1.1);
+        }
+
+        .scroll-arrow img {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 滚动提示文字 */
+        .scroll-text {
+            position: absolute;
+            bottom: 140px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #9a9a9a;
+            font-family: "PingFang HK", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            letter-spacing: 0.6px;
+            z-index: 25;
+            white-space: nowrap;
+        }
+
+        /* 页脚 */
+        .footer {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 140px;
+            z-index: 20;
+        }
+
+        .footer-copyright {
+            line-height: 24px;
+            letter-spacing: -0.4px;
+            color: #9a9a9a;
+            font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+
+        .footer-site-by {
+            text-align: right;
+            letter-spacing: -0.4px;
+            color: #9a9a9a;
+            font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+
+        /* 指示器 */
+        .indicator {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 30;
+        }
+
+        .indicator-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background: #ffffff;
+            transform: scale(1.3);
+        }
+
+        .indicator-dot:hover {
+            background: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+    <script>
+        function scalePage() {
+            const targetWidth = 1920;
+            const targetHeight = 1080;
+            
+            const actualWidth = window.innerWidth;
+            const actualHeight = window.innerHeight;
+            
+            const scaleX = actualWidth / targetWidth;
+            const scaleY = actualHeight / targetHeight;
+            const scale = Math.min(scaleX, scaleY);
+            
+            const wrapper = document.querySelector('.frame-wrapper');
+            const frame3 = document.querySelector('.frame3');
+            
+            if (wrapper && frame3) {
+                wrapper.style.transform = 'scale(' + scale + ')';
+                wrapper.style.width = targetWidth + 'px';
+                wrapper.style.height = targetHeight + 'px';
+                frame3.style.transform = 'none';
+                
+                wrapper.style.opacity = '0';
+                setTimeout(function() {
+                    wrapper.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    wrapper.style.opacity = '1';
+                }, 50);
+            }
+        }
+        
+        // 电影票轮播功能
+        let currentIndex = 0;
+        let totalTickets = 0;
+        let worksData = [];
+        
+        async function initGallery() {
+            try {
+                // Fetch works for 'origin' brand AND category 'work'
+                const response = await fetch('http://localhost:3000/api/works?brand=origin&category=work');
+                worksData = await response.json();
+                totalTickets = worksData.length;
+                
+                const container = document.querySelector('.gallery-container');
+                container.innerHTML = ''; 
+                
+                if (totalTickets === 0) {
+                     // Handle no works case if needed, maybe show a message
+                     return;
+                }
+
+                worksData.forEach((work, index) => {
+                    const ticket = document.createElement('div');
+                    ticket.className = 'ticket-card';
+                    ticket.classList.add('hidden');
+                    
+                    ticket.onclick = function() {
+                        if (ticket.classList.contains('position-center')) {
+                             // Pass 'from=origin' to ensure correct return navigation
+                             window.location.href = `work-detail.html?id=${work.id}&from=origin`;
+                        }
+                    };
+                    
+                    const img = document.createElement('img');
+                    img.src = `../${work.ticketImage}`;
+                    img.alt = work.title;
+                    
+                    ticket.appendChild(img);
+                    container.appendChild(ticket);
+                });
+                
+                updatePositions();
+                createIndicators();
+                
+            } catch (error) {
+                console.error('Failed to load works:', error);
+            }
+        }
+        
+        function updatePositions() {
+            const tickets = document.querySelectorAll('.ticket-card');
+            const dots = document.querySelectorAll('.indicator-dot');
+            
+            if (tickets.length === 0) return;
+
+            tickets.forEach(function(ticket, i) {
+                ticket.classList.remove('position-top', 'position-center', 'position-bottom', 'hidden');
+                
+                const prevIndex = (currentIndex - 1 + totalTickets) % totalTickets;
+                const nextIndex = (currentIndex + 1) % totalTickets;
+                
+                if (i === currentIndex) {
+                    ticket.classList.add('position-center');
+                    ticket.style.pointerEvents = 'auto';
+                } else if (i === prevIndex) {
+                    ticket.classList.add('position-top');
+                    ticket.style.pointerEvents = 'none';
+                } else if (i === nextIndex) {
+                    ticket.classList.add('position-bottom');
+                    ticket.style.pointerEvents = 'none';
+                } else {
+                    ticket.classList.add('hidden');
+                    ticket.style.pointerEvents = 'none';
+                }
+            });
+            
+            // Re-select dots
+            const currentDots = document.querySelectorAll('.indicator-dot');
+            currentDots.forEach(function(dot, i) {
+                if (i === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+        
+        function nextTicket() {
+            if (totalTickets === 0) return;
+            currentIndex = (currentIndex + 1) % totalTickets;
+            updatePositions();
+        }
+        
+        function prevTicket() {
+            if (totalTickets === 0) return;
+            currentIndex = (currentIndex - 1 + totalTickets) % totalTickets;
+            updatePositions();
+        }
+        
+        function goToTicket(index) {
+            currentIndex = index;
+            updatePositions();
+        }
+        
+        function createIndicators() {
+            const indicator = document.querySelector('.indicator');
+            if (!indicator) return;
+            indicator.innerHTML = '';
+            
+            for (let i = 0; i < totalTickets; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'indicator-dot' + (i === 0 ? ' active' : '');
+                dot.onclick = function() {
+                    goToTicket(i);
+                };
+                indicator.appendChild(dot);
+            }
+        }
+        
+        function navigateToPage(pageName) {
+            const wrapper = document.querySelector('.frame-wrapper');
+            if (wrapper) {
+                wrapper.classList.add('fade-out');
+                setTimeout(function() {
+                    window.location.href = pageName + '.html';
+                }, 600);
+            }
+        }
+        
+        window.addEventListener('load', function() {
+            scalePage();
+            initGallery();
+        });
+        window.addEventListener('resize', scalePage);
+    </script>
+</head>
+<body>
+    <div class="page-container">
+        <div class="frame-wrapper">
+            <div class="frame3">
+                <!-- 共用头部 -->
+                <div class="common-header">
+                    <div class="header-top-bar">
+                        <img src="../images/origin-logo.svg" class="header-logo" alt="Logo">
+                    </div>
+                    <p class="header-world">World</p>
+                    <p class="header-travel">Travel</p>
+                </div>
+
+                <!-- 背景图 -->
+                <div class="bg-image"></div>
+                
+                <!-- 底部渐变 -->
+                <div class="gradient-bottom"></div>
+
+                <!-- 电影票轮播区域 -->
+                <div class="gallery-container">
+                    <!-- Tickets will be loaded dynamically via JS -->
+                </div>
+
+                <!-- 滚动提示文字 -->
+                <p class="scroll-text">滚动</p>
+
+                <!-- 向下箭头 - 切换电影票 -->
+                <div class="scroll-arrow" onclick="nextTicket()">
+                    <img src="../.figma/image/mmn73smn-7eqlucd.svg" alt="Next">
+                </div>
+
+                <!-- 指示器 -->
+                <div class="indicator"></div>
+
+                <!-- 页脚 -->
+                <div class="footer">
+                    <p class="footer-copyright">© Arcanus Travel— All rights reserved</p>
+                    <p class="footer-site-by">Site by: Arcanus Travel</p>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="nav-widget">
+        <div class="nav-widget-container">
+            <div class="nav-widget-item nav-widget-menu-btn">
+                <div data-hover="bggrow" data-menu="maintrigger" class="mmenu-col btn">
+                    <div class="menu-icon-w">
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                    </div>
+                    <div class="menu-dots-w">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 103 103" width="100%">
+                            <path d="M103 94V9a9 9 0 0 1-9-9H9a9 9 0 0 1-9 9v85a9 9 0 0 1 9 9h85a9 9 0 0 1 9-9Z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="home1.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">首页</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="works.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">作品展示</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="about.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">关于我们</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="faq.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">问答相关</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/nav-widget.js"></script>
+    <script src="../js/common-interactions.js"></script>
+    </body>
+</html>

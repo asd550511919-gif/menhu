@@ -1,0 +1,193 @@
+/* 全局悬浮挂件样式 */
+.nav-widget {
+    position: fixed;
+    top: 100px; /* Moved down from 80px */
+    right: 61px;
+    z-index: 9999;
+    font-family: "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+}
+
+.nav-widget-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: relative;
+}
+
+/* 默认收起状态 - 只显示第一个项（菜单按钮） */
+.nav-widget .nav-widget-item {
+    display: none;
+}
+
+.nav-widget .nav-widget-item:first-child {
+    display: flex;
+}
+
+.nav-widget .nav-widget-divider {
+    display: none;
+}
+
+/* 展开状态 - 显示所有项 */
+.nav-widget.expanded .nav-widget-item {
+    display: flex;
+}
+
+/* 展开时，菜单按钮仍然显示 */
+.nav-widget.expanded .nav-widget-item:first-child {
+    display: flex;
+}
+
+.nav-widget.expanded .nav-widget-divider {
+    display: block;
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+.nav-widget-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 36px;
+    height: 36px;
+    background: #F5F1E8;
+    border-radius: 6px;
+    margin-bottom: 1px;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: visible;
+}
+
+.nav-widget-item:hover {
+    background: #E8E4D8;
+}
+
+/* 展开时的选项样式 */
+.nav-widget.expanded .nav-widget-item {
+    width: auto;
+    min-width: 100px;
+    padding: 0 15px;
+    justify-content: center;
+}
+
+.nav-widget-text {
+    text-align: center;
+    color: #1A1A1A;
+    font-size: 13px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    white-space: nowrap;
+    display: none;
+}
+
+/* 展开时显示文字 */
+.nav-widget.expanded .nav-widget-text {
+    display: block;
+}
+
+/* 收起时只显示图标 */
+.nav-widget:not(.expanded) .nav-widget-item {
+    width: 36px;
+    padding: 0;
+}
+
+.nav-widget:not(.expanded) .nav-widget-icon-wrapper {
+    display: flex;
+}
+
+/* 展开时隐藏非第一个项的图标 */
+.nav-widget.expanded .nav-widget-item:not(:first-child) .nav-widget-icon-wrapper {
+    display: none;
+}
+
+.nav-widget-icon {
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+    flex-shrink: 0;
+}
+
+.nav-widget-icon::before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 1.5px;
+    background: #1A1A1A;
+    box-shadow: 0 3px 0 #1A1A1A, 0 6px 0 #1A1A1A;
+}
+
+.nav-widget-divider {
+    width: 100%;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, #1A1A1A 0, #1A1A1A 2px, transparent 2px, transparent 4px);
+    margin: 0;
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+/* 挂件装饰性圆点 */
+.nav-widget-item::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 6px;
+    height: 6px;
+    background: #1A1A1A;
+    border-radius: 50%;
+}
+
+.nav-widget-item:last-child::after {
+    display: none;
+}
+
+/* 挂件装饰性圆点（底部） */
+.nav-widget-item::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 6px;
+    height: 6px;
+    background: #1A1A1A;
+    border-radius: 50%;
+}
+
+.nav-widget-item:first-child::before,
+.nav-widget-item:last-child::before {
+    display: none;
+}
+
+/* 右侧图标区域固定不动 */
+.nav-widget-icon-wrapper {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 文字区域 */
+.nav-widget-text-wrapper {
+    text-align: center;
+    white-space: nowrap;
+    margin-left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: none;
+}
+
+/* 展开时显示文字区域 */
+.nav-widget.expanded .nav-widget-text-wrapper {
+    opacity: 1;
+    display: block;
+}

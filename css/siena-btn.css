@@ -1,0 +1,155 @@
+/* Siena Style Button CSS */
+.siena-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    cursor: pointer;
+    box-sizing: border-box;
+    background: transparent;
+    border: none;
+    outline: none;
+    text-decoration: none;
+}
+
+/* Background & Border SVG Container */
+.siena-btn-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.siena-btn-bg svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.siena-btn-border {
+    fill: transparent;
+    stroke: #ffffff; /* White border initially */
+    stroke-width: 1.5; /* Slightly thicker for visibility */
+    transition: all 0.3s ease;
+}
+
+.siena-btn:hover .siena-btn-border {
+    fill: #ffffff; /* White background on hover */
+    stroke: #ffffff;
+}
+
+.siena-btn-line {
+    stroke: #ffffff;
+    stroke-width: 1.5;
+    stroke-dasharray: 4 4; /* Dashed line */
+    transition: stroke 0.3s ease;
+}
+
+.siena-btn:hover .siena-btn-line {
+    stroke: #000000; /* Black dashed line on hover */
+}
+
+/* Content Container */
+.siena-btn-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 24px; /* Default padding, can be overridden */
+}
+
+/* Text Area */
+.siena-text-wrapper {
+    flex: 1;
+    height: 24px;
+    overflow: hidden;
+    position: relative;
+}
+
+.siena-text-inner {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.siena-text {
+    display: block;
+    height: 24px;
+    line-height: 24px;
+    color: #ffffff;
+    font-family: "Abhaya Libre Medium", "PingFang SC", sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    text-align: left;
+    transition: color 0.3s ease;
+}
+
+/* Hover Effect: Text Slide & Color Change */
+.siena-btn:hover .siena-text-inner {
+    transform: translateY(-24px);
+}
+
+.siena-btn:hover .siena-text {
+    color: #000000; /* Black text on hover */
+}
+
+/* Arrow Area */
+.siena-arrow-wrapper {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    padding-left: 0; 
+}
+
+.siena-arrow-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.siena-arrow-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), color 0.3s ease;
+}
+
+.siena-btn:hover .siena-arrow-svg {
+    color: #000000; /* Black arrow on hover */
+}
+
+/* Primary arrow (default visible) */
+.siena-arrow-svg.primary {
+    transform: translate(0, 0);
+}
+
+/* Secondary arrow (hidden initially) */
+.siena-arrow-svg.secondary {
+    transform: translate(-100%, 100%); /* Start from bottom-left */
+}
+
+/* Hover Effect: Arrow Slide */
+.siena-btn:hover .siena-arrow-svg.primary {
+    transform: translate(100%, -100%); /* Move to top-right */
+}
+
+.siena-btn:hover .siena-arrow-svg.secondary {
+    transform: translate(0, 0); /* Move to center */
+}

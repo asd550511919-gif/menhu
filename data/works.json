@@ -1,0 +1,184 @@
+[
+  {
+    "id": "work1",
+    "title": "作品1",
+    "ticketImage": "images/xipu1.png",
+    "detailImages": [
+      "images/xipu1-1.png",
+      "images/xipu1-2.png",
+      "images/xipu1-3.png",
+      "images/xipu1-4.png",
+      "images/xipu1-5.png",
+      "images/xipu1-6.png",
+      "images/xipu1-7.png"
+    ],
+    "brand": "mirada",
+    "category": "work"
+  },
+  {
+    "id": "work2",
+    "title": "作品2",
+    "ticketImage": "images/xipu2.png",
+    "detailImages": [
+      "images/xipu2-1.png",
+      "images/xipu2-2.png",
+      "images/xipu2-3.png",
+      "images/xipu2-4.png",
+      "images/xipu2-5.png",
+      "images/xipu2-6.png",
+      "images/xipu2-7.png"
+    ],
+    "brand": "mirada",
+    "category": "work"
+  },
+  {
+    "id": "work3",
+    "title": "作品3",
+    "ticketImage": "images/xipu3.png",
+    "detailImages": [
+      "images/xipu3-1.png",
+      "images/xipu3-2.png",
+      "images/xipu3-3.png",
+      "images/xipu3-4.png",
+      "images/xipu3-5.png",
+      "images/xipu3-6.png",
+      "images/xipu3-7.png"
+    ],
+    "brand": "mirada",
+    "category": "work"
+  },
+  {
+    "id": "work4",
+    "title": "作品4",
+    "ticketImage": "images/xipu4.png",
+    "detailImages": [
+      "images/xipu4-1.png",
+      "images/xipu4-2.png",
+      "images/xipu4-3.png",
+      "images/xipu4-4.png",
+      "images/xipu4-5.png",
+      "images/xipu4-6.png",
+      "images/xipu4-7.png"
+    ],
+    "brand": "mirada",
+    "category": "work"
+  },
+  {
+    "id": "benyuan1",
+    "title": "本源作品1",
+    "ticketImage": "images/benyuan1.png",
+    "detailImages": [
+      "images/by1-3.png",
+      "images/by1-1.png",
+      "images/by1-2.png",
+      "images/by1-5.png",
+      "images/by1-4.png"
+    ],
+    "brand": "origin",
+    "category": "work"
+  },
+  {
+    "id": "benyuan2",
+    "title": "本源作品2",
+    "ticketImage": "images/benyuan2.png",
+    "detailImages": [],
+    "brand": "origin",
+    "category": "work"
+  },
+  {
+    "id": "benyuan3",
+    "title": "本源作品3",
+    "ticketImage": "images/benyuan3.png",
+    "detailImages": [],
+    "brand": "origin",
+    "category": "work"
+  },
+  {
+    "id": "benyuan4",
+    "title": "本源作品4",
+    "ticketImage": "images/benyuan4.png",
+    "detailImages": [],
+    "brand": "origin",
+    "category": "work"
+  },
+  {
+    "id": "benyuan5",
+    "title": "本源作品5",
+    "ticketImage": "images/benyuan5.png",
+    "detailImages": [],
+    "brand": "origin",
+    "category": "work"
+  },
+  {
+    "id": "mirada_brand_manual",
+    "title": "西葡品牌手册",
+    "ticketImage": "",
+    "detailImages": [
+      "images/xppp1.png",
+      "images/xppp2.png",
+      "images/xppp3.png",
+      "images/xppp4.png",
+      "images/xppp5.png",
+      "images/xppp6.png",
+      "images/xppp8.png",
+      "images/xppp9.png",
+      "images/xppp10.png"
+    ],
+    "brand": "mirada",
+    "category": "brand_manual"
+  },
+  {
+    "id": "mirada_resource",
+    "title": "西葡资源优势",
+    "ticketImage": "",
+    "detailImages": [
+      "images/xpzy1.png",
+      "images/xpzy2.png",
+      "images/xpzy3.png",
+      "images/xpzy4.png",
+      "images/xpzy5.png",
+      "images/xpzy6.png",
+      "images/xpzy7.png"
+    ],
+    "brand": "mirada",
+    "category": "resource"
+  },
+  {
+    "id": "origin_brand_manual",
+    "title": "本源品牌手册",
+    "ticketImage": "",
+    "detailImages": [
+      "images/bypp1.png",
+      "images/bypp2.png",
+      "images/bypp3.png",
+      "images/bypp4.png",
+      "images/bypp5.png",
+      "images/bypp6.png",
+      "images/bypp7.png",
+      "images/bypp8.png",
+      "images/bypp9.png",
+      "images/bypp10.png",
+      "images/bypp11.png",
+      "images/bypp12.png"
+    ],
+    "brand": "origin",
+    "category": "brand_manual"
+  },
+  {
+    "id": "origin_resource",
+    "title": "本源资源优势",
+    "ticketImage": "",
+    "detailImages": [
+      "images/byzy1.png",
+      "images/byzy2.png",
+      "images/byzy3.png",
+      "images/byzy4.png",
+      "images/byzy5.png",
+      "images/byzy6.png",
+      "images/byzy7.png",
+      "images/byzy8.png"
+    ],
+    "brand": "origin",
+    "category": "resource"
+  }
+]

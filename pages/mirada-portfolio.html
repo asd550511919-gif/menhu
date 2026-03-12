@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mirada Travel 品牌介绍 - Arcanus Travel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Albert+Sans:wght@400;800&family=Abhaya+Libre+Medium&family=Cormorant+SC&family=Satsuki+Gendai+Mincho&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/common-header.css">
+    <link rel="stylesheet" href="../css/nav-widget.css">
+    <link rel="stylesheet" href="../css/nav-widget-siena.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .frame-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-origin: center center;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .frame-wrapper.fade-out {
+            opacity: 0;
+            transform: scale(1.1) !important;
+        }
+
+        .frame4 {
+            display: flex;
+            position: relative;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 479px 144px 196px 210px;
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .autoWrapper {
+            position: absolute;
+            top: -54px;
+            left: -80px;
+            width: 2049px;
+            height: 1158px;
+        }
+
+        .frame3 {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 54px 50px 684px 79px;
+            width: 2049px;
+            height: 1158px;
+            background-image: url(../images/mirada-bg.png);
+            background-position: 25px -1px;
+            background-size: 100% 100.03%;
+            background-repeat: no-repeat;
+        }
+
+        .rectangle7 {
+            position: absolute;
+            top: 531px;
+            left: 80px;
+            width: 1929px;
+            height: 603px;
+            transform: rotate(-180deg);
+            background-image: linear-gradient(180deg, #000000 0%, #00000000 100%);
+            z-index: 5;
+        }
+
+        .group22 {
+            display: flex;
+            position: absolute;
+            top: 1075px;
+            left: 141px;
+            align-items: flex-start;
+            justify-content: space-between;
+            width: 1813px;
+            height: 29px;
+            z-index: 10;
+        }
+
+        .footer-copyright {
+            line-height: 24px;
+            letter-spacing: -0.4px;
+            color: #9a9a9a;
+            font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+
+        .footer-site-by {
+            margin: 5px 0px 0px;
+            width: 547px;
+            text-align: right;
+            letter-spacing: -0.4px;
+            color: #9a9a9a;
+            font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+
+        .decorImage {
+            position: absolute;
+            top: 280px;
+            left: 930px;
+            width: 256px;
+            height: 227px;
+            overflow: hidden;
+            z-index: 5;
+        }
+
+        .autoWrapper4 {
+            display: flex;
+            position: relative;
+            align-items: flex-start;
+            align-self: stretch;
+            justify-content: space-between;
+            gap: 100px;
+            z-index: 10;
+        }
+
+        .autoWrapper2 {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            align-self: stretch;
+            margin-top: 3px;
+            gap: 40px;
+        }
+
+        .text {
+            width: 725px;
+            height: 270px;
+            line-height: 40px;
+            letter-spacing: 0.72px;
+            color: #fef9ec;
+            font-family: "PingFang HK", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 24px;
+        }
+
+        .group23 {
+            position: relative;
+            margin-left: 507px;
+            width: 212px;
+            height: 64px;
+            cursor: pointer;
+        }
+
+        .subtract {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            align-items: center;
+            width: 212px;
+            height: 64px;
+            background-image: url(../images/mirada-btn-bg.svg);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .text2 {
+            position: absolute;
+            left: 8px;
+            width: 134px;
+            white-space: nowrap;
+            text-align: center;
+            line-height: 64px;
+            letter-spacing: 0.66px;
+            color: #ffffff;
+            font-family: "Abhaya Libre Medium", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 22px;
+        }
+
+        .arrow3 {
+            position: absolute;
+            right: 18px;
+            width: 18px;
+            height: 18px;
+            border-right: 3px solid #ffffff;
+            border-bottom: 3px solid #ffffff;
+            transform: rotate(-45deg);
+        }
+
+        .line2 {
+            position: absolute;
+            top: 32px;
+            left: 142px;
+            background: #ffffff;
+            width: 33px;
+            height: 2px;
+            transform: rotate(90deg);
+        }
+
+        .autoWrapper3 {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            align-self: stretch;
+            gap: 40px;
+        }
+
+        .miradaTravelIsAHighE {
+            width: 725px;
+            height: 270px;
+            line-height: 26px;
+            letter-spacing: 0.6px;
+            color: #fef9ec;
+            font-family: "PingFang HK", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+
+        .group2 {
+            position: relative;
+            margin-left: 7px;
+            width: 212px;
+            height: 65px;
+            cursor: pointer;
+        }
+
+        .subtract2 {
+            display: flex;
+            position: absolute;
+            top: 1px;
+            left: 0;
+            align-items: center;
+            width: 212px;
+            height: 64px;
+            background-image: url(../images/mirada-btn-bg.svg);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .arrow32 {
+            position: absolute;
+            right: 18px;
+            width: 18px;
+            height: 18px;
+            border-right: 3px solid #ffffff;
+            border-bottom: 3px solid #ffffff;
+            transform: rotate(-45deg);
+        }
+
+        .text3 {
+            position: absolute;
+            top: 0;
+            left: 8px;
+            width: 134px;
+            white-space: nowrap;
+            text-align: center;
+            line-height: 64px;
+            letter-spacing: 0.66px;
+            color: #ffffff;
+            font-family: "Abhaya Libre Medium", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 22px;
+        }
+
+        .line22 {
+            position: absolute;
+            top: 33px;
+            left: 142px;
+            background: #ffffff;
+            width: 33px;
+            height: 2px;
+            transform: rotate(90deg);
+        }
+
+        /* 电影票样式作品卡片 */
+        .portfolio-card-container {
+            position: absolute;
+            width: 1590.71px;
+            height: 335.16px;
+            left: 486px;
+            top: 820px;
+            filter: drop-shadow(7.66962px 12.2714px 7.36283px rgba(0, 0, 0, 0.3));
+            transform: rotate(-2deg);
+            z-index: 20;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-card-container:hover {
+            transform: rotate(-2deg) scale(1.02);
+        }
+
+        .portfolio-card-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            pointer-events: none;
+        }
+
+        /* 向下箭头按钮 - 位于两个按钮中间 */
+        .scroll-arrow {
+            position: absolute;
+            top: 874px;
+            left: 920px;
+            width: 82px;
+            height: 82px;
+            z-index: 25;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            filter: none;
+        }
+
+        .scroll-arrow:hover {
+            transform: translateY(5px);
+        }
+
+        .scroll-arrow img {
+            width: 100%;
+            height: 100%;
+            filter: none;
+        }
+
+        /* 渐变遮罩 */
+        .gradient-overlay {
+            position: absolute;
+            top: 847px;
+            left: 25px;
+            width: 1929px;
+            height: 242px;
+            transform: rotate(180deg);
+            background-image: linear-gradient(180deg, #000000 0%, transparent 100%);
+            z-index: 15;
+        }
+    </style>
+    <script>
+        function scalePage() {
+            const targetWidth = 1920;
+            const targetHeight = 1080;
+            
+            const actualWidth = window.innerWidth;
+            const actualHeight = window.innerHeight;
+            
+            const scaleX = actualWidth / targetWidth;
+            const scaleY = actualHeight / targetHeight;
+            const scale = Math.min(scaleX, scaleY);
+            
+            const wrapper = document.querySelector('.frame-wrapper');
+            const frame4 = document.querySelector('.frame4');
+            
+            if (wrapper && frame4) {
+                wrapper.style.transform = 'scale(' + scale + ')';
+                wrapper.style.width = targetWidth + 'px';
+                wrapper.style.height = targetHeight + 'px';
+                frame4.style.transform = 'none';
+                
+                wrapper.style.opacity = '0';
+                setTimeout(function() {
+                    wrapper.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    wrapper.style.opacity = '1';
+                }, 50);
+            }
+        }
+        
+        function navigateToPage(pageName) {
+            const wrapper = document.querySelector('.frame-wrapper');
+            if (wrapper) {
+                wrapper.classList.add('fade-out');
+                setTimeout(function() {
+                    window.location.href = pageName + '.html';
+                }, 600);
+            }
+        }
+        
+        window.addEventListener('load', scalePage);
+        window.addEventListener('resize', scalePage);
+    </script>
+</head>
+<body>
+    <div class="page-container">
+        <div class="frame-wrapper">
+            <div class="frame4">
+                <!-- 共用头部 -->
+                <div class="common-header">
+                    <div class="header-top-bar">
+                        <img src="../images/mirada-logo.svg" class="header-logo" alt="Logo">
+                    </div>
+                    <p class="header-world">World</p>
+                    <p class="header-travel">Travel</p>
+                </div>
+                
+                <div class="autoWrapper">
+                    <div class="frame3">
+                        <img src="../images/mirada-decor.svg" class="decorImage" alt="Decoration">
+                    </div>
+                    <div class="rectangle7"></div>
+                    <div class="group22">
+                        <p class="footer-copyright">© Arcanus Travel— All rights reserved</p>
+                        <p class="footer-site-by">Site by: Arcanus Travel</p>
+                    </div>
+                </div>
+                
+                <div class="autoWrapper4">
+                    <div class="autoWrapper2">
+                        <p class="text">
+                            Mirada Travel 是一个只提供「在地体验旅行」的高端旅行品牌。<br>
+                            我们认为马塞尔—普鲁斯特提到的"真正的发现之旅不在于寻找新的景观，而在于拥有新的眼光。"就是旅行产品设计的本质。如果没有新鲜的视角和世界观，那行程只是枯燥无味的景点拼凑。我们希望呈现给不同客户的是我们理解的、不同视角下的欧洲，这才是产品而非景点的拼凑。
+                        </p>
+                    </div>
+                    <div class="autoWrapper3">
+                        <p class="miradaTravelIsAHighE">
+                            Mirada Travel is a high-end travel brand dedicated exclusively to immersive local-experience journeys.We believe that what Marcel Proust once expressed — "The real voyage of discovery consists not in seeking new landscapes, but in having new eyes." — captures the true essence of travel product design. Without a fresh perspective or worldview, an itinerary is nothing more than a mechanical collection of sights.What we aim to present to each client is Europe as we understand it through different lenses and perspectives. That is what transforms travel into a thoughtfully crafted product — rather than a simple compilation of destinations.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 电影票样式作品卡片 -->
+                <div class="portfolio-card-container">
+                    <img src="../images/Sunset Melting Gold.png" alt="Sunset Melting Gold">
+                </div>
+
+                <!-- 渐变遮罩 -->
+                <div class="gradient-overlay"></div>
+
+                <!-- 向下箭头 - 位置与 home1 一致 -->
+                <div class="scroll-arrow" onclick="navigateToPage('mirada-gallery')">
+                    <img src="../images/mirada-portfolio-arrow.svg" alt="Scroll">
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="nav-widget">
+        <div class="nav-widget-container">
+            <div class="nav-widget-item nav-widget-menu-btn">
+                <div data-hover="bggrow" data-menu="maintrigger" class="mmenu-col btn">
+                    <div class="menu-icon-w">
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                    </div>
+                    <div class="menu-dots-w">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 103 103" width="100%">
+                            <path d="M103 94V9a9 9 0 0 1-9-9H9a9 9 0 0 1-9 9v85a9 9 0 0 1 9 9h85a9 9 0 0 1 9-9Z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="home1.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">首页</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="works.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">作品展示</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="about.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">关于我们</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="faq.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">问答相关</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/nav-widget.js"></script>
+    <script src="../js/common-interactions.js"></script>
+    </body>
+</html>

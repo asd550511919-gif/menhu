@@ -1,0 +1,460 @@
+* {
+  box-sizing: border-box;
+}
+
+.frame4 {
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 1021px 46px 30px 61px;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+
+  .world {
+    line-height: 24px;
+    letter-spacing: -0.4px;
+    color: #9a9a9a;
+    font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+    font-size: 20px;
+  }
+
+  .autoWrapper9 {
+    position: absolute;
+    top: -8px;
+    left: -33px;
+    width: 2115px;
+    height: 1222px;
+
+    .rectangle1 {
+      position: absolute;
+      top: 8px;
+      left: 33px;
+      width: 1920px;
+      height: 313px;
+      background-image: linear-gradient(180deg, #000000 0%, #00000000 100%);
+    }
+
+    .frame3 {
+      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 8px 96px 366px 33px;
+      width: 2049px;
+      height: 1158px;
+      background-image: url(../image/mmn4kxdm-vdhrj69.png);
+      background-position: 25px -1px;
+      background-size: 100% 100.03%;
+      background-repeat: no-repeat;
+
+      .autoWrapper {
+        position: relative;
+        width: 1920px;
+        height: 313px;
+
+        .rectangle6 {
+          display: flex;
+          position: absolute;
+          top: 0;
+          left: 0;
+          align-items: flex-start;
+          padding: 40px 46px 239px 61px;
+          width: 1920px;
+          height: 313px;
+          background-image: linear-gradient(
+            180deg,
+            #000000b2 0%,
+            #00000000 100%
+          );
+
+          .frame {
+            margin-top: 12px;
+            margin-left: 787px;
+            width: 190px;
+            height: 22px;
+            overflow: hidden;
+          }
+
+          .travel {
+            margin: 0px 0px 0px 727px;
+            line-height: 24px;
+            letter-spacing: -0.4px;
+            color: #9a9a9a;
+            font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 20px;
+          }
+        }
+
+        .frame2 {
+          position: absolute;
+          bottom: -145px;
+          left: 857px;
+          width: 256px;
+          height: 227px;
+          overflow: hidden;
+        }
+      }
+
+      .autoWrapper2 {
+        display: flex;
+        align-items: flex-start;
+        align-self: stretch;
+        justify-content: space-between;
+        margin-top: 198px;
+        padding-right: 147px;
+        padding-left: 207px;
+
+        .text {
+          margin: 3px 0px 0px;
+          width: 725px;
+          height: 270px;
+          line-height: 40px;
+          letter-spacing: 0.72px;
+          color: #fef9ec;
+          font-family: "PingFang HK", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+          font-size: 24px;
+        }
+
+        .miradaTravelIsAHighE {
+          width: 725px;
+          height: 270px;
+          line-height: 26px;
+          letter-spacing: 0.6px;
+          color: #fef9ec;
+          font-family: "PingFang HK", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+          font-size: 20px;
+        }
+      }
+    }
+
+    .group21 {
+      display: flex;
+      position: absolute;
+      top: 887px;
+      left: 524px;
+      align-items: flex-start;
+      box-shadow: 8px 12px 7px 0px #0000004d;
+      padding-right: 5px;
+      padding-bottom: 28px;
+      width: 1591px;
+      height: 335px;
+      rotate: -2deg;
+
+      .group16 {
+        position: relative;
+        margin-top: -28px;
+        margin-left: -5px;
+        width: 1591px;
+        height: 335px;
+
+        .subtract {
+          position: absolute;
+          top: 14px;
+          left: 397px;
+          width: 795px;
+          height: 335px;
+        }
+
+        .maskGroup {
+          position: absolute;
+          top: 1px;
+          left: 795px;
+          width: 795px;
+          height: 335px;
+        }
+
+        .text2 {
+          position: absolute;
+          top: 238px;
+          left: 80px;
+          width: 283px;
+          height: 115px;
+          line-height: 36px;
+          letter-spacing: -2.69px;
+          color: #ffffff;
+          font-family: "Satsuki Gendai Mincho", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+          font-size: 34px;
+          font-weight: 500;
+          text-shadow: 0px 4px 4px #00000080;
+        }
+
+        .sunsetMeltingGoldOra {
+          position: absolute;
+          top: 97px;
+          left: 76px;
+          width: 534px;
+          height: 122px;
+          line-height: 40px;
+          letter-spacing: -3.69px;
+          color: #fef9ec;
+          font-family: "Cormorant SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+          font-size: 62px;
+          text-shadow: 0px 4px 4px #00000040;
+        }
+
+        .nOOo2 {
+          position: absolute;
+          top: 179px;
+          left: 905px;
+          width: 100px;
+          height: 45px;
+          line-height: 44px;
+          letter-spacing: -2.02px;
+          color: #fef9ec;
+          font-family: "Cormorant SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+          font-size: 34px;
+          rotate: -90deg;
+          text-shadow: 0px 4px 4px #00000040;
+        }
+
+        .group12 {
+          display: flex;
+          position: absolute;
+          top: 63px;
+          left: 851px;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 1px 0px 18px 1px;
+          width: 71px;
+          height: 256px;
+
+          .rectangle47 {
+            position: absolute;
+            right: -1px;
+            bottom: -15px;
+            background: #d9d9d9;
+            width: 71px;
+            height: 2px;
+          }
+
+          .rectangle31 {
+            position: absolute;
+            right: -1px;
+            bottom: -11px;
+            background: #d9d9d9;
+            width: 71px;
+            height: 5px;
+          }
+
+          .rectangle39 {
+            position: absolute;
+            right: -1px;
+            bottom: -18px;
+            background: #d9d9d9;
+            width: 71px;
+            height: 5px;
+          }
+
+          .rectangle26 {
+            position: absolute;
+            top: -4px;
+            left: -1px;
+            background: #d9d9d9;
+            width: 71px;
+            height: 2px;
+          }
+
+          .rectangle23 {
+            position: absolute;
+            top: -18px;
+            left: -1px;
+            background: #d9d9d9;
+            width: 71px;
+            height: 2px;
+          }
+
+          .rectangle25 {
+            position: absolute;
+            top: -7px;
+            left: -1px;
+            background: #d9d9d9;
+            width: 71px;
+            height: 3px;
+          }
+
+          .rectangle22 {
+            position: absolute;
+            top: -21px;
+            left: -1px;
+            background: #d9d9d9;
+            width: 71px;
+            height: 3px;
+          }
+
+          .rectangle24 {
+            position: absolute;
+            top: -14px;
+            left: -1px;
+            background: #d9d9d9;
+            width: 71px;
+            height: 5px;
+          }
+
+          .rectangle19 {
+            position: absolute;
+            right: -1px;
+            bottom: -5px;
+            background: #d9d9d9;
+            width: 71px;
+            height: 3px;
+          }
+
+          .rectangle18 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #d9d9d9;
+            width: 71px;
+            height: 5px;
+          }
+
+          .rectangle16 {
+            background: #d9d9d9;
+            width: 71px;
+            height: 5px;
+          }
+
+          .rectangle17 {
+            margin-top: 4px;
+            margin-left: 1px;
+            background: #d9d9d9;
+            width: 71px;
+            height: 3px;
+          }
+
+          .autoWrapper3 {
+            position: relative;
+            margin-top: 4px;
+            margin-left: 1px;
+            width: 71px;
+            height: 5px;
+
+            .rectangle20 {
+              position: absolute;
+              right: -1px;
+              bottom: -16px;
+              background: #d9d9d9;
+              width: 71px;
+              height: 5px;
+            }
+
+            .rectangle21 {
+              position: absolute;
+              right: -1px;
+              bottom: -9px;
+              background: #d9d9d9;
+              width: 71px;
+              height: 3px;
+            }
+          }
+
+          .autoWrapper4 {
+            position: relative;
+            margin-top: 41px;
+            margin-left: 2px;
+            width: 71px;
+            height: 5px;
+          }
+
+          .rectangle29 {
+            margin-top: 4px;
+            margin-left: 2px;
+            background: #d9d9d9;
+            width: 71px;
+            height: 3px;
+          }
+
+          .rectangle28 {
+            margin-top: 4px;
+            margin-left: 3px;
+            background: #d9d9d9;
+            width: 71px;
+            height: 5px;
+          }
+
+          .autoWrapper5 {
+            position: relative;
+            margin-top: 25px;
+            margin-left: 4px;
+            width: 71px;
+            height: 5px;
+          }
+
+          .autoWrapper6 {
+            position: relative;
+            margin-top: 43px;
+            margin-left: 5px;
+            width: 71px;
+            height: 5px;
+          }
+
+          .autoWrapper7 {
+            position: relative;
+            margin-top: 32px;
+            margin-left: 7px;
+            width: 71px;
+            height: 5px;
+          }
+
+          .autoWrapper8 {
+            position: relative;
+            margin-top: 40px;
+            margin-left: 8px;
+            width: 71px;
+            height: 5px;
+          }
+        }
+
+        .line2 {
+          position: absolute;
+          top: 195px;
+          left: 653px;
+          width: 295px;
+          height: 1px;
+          rotate: 90deg;
+        }
+      }
+    }
+
+    .rectangle7 {
+      position: absolute;
+      top: 847px;
+      left: 25px;
+      width: 1929px;
+      height: 242px;
+      rotate: -180deg;
+      background-image: linear-gradient(180deg, #000000 0%, #00000000 100%);
+    }
+
+    .group11 {
+      position: absolute;
+      top: 874px;
+      left: 984px;
+      width: 82px;
+      height: 82px;
+    }
+  }
+
+  .autoWrapper10 {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    align-self: stretch;
+    justify-content: space-between;
+
+    .siteByArcanusTravel {
+      margin: 5px 0px 0px;
+      width: 547px;
+      text-align: right;
+      letter-spacing: -0.4px;
+      color: #9a9a9a;
+      font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 20px;
+    }
+  }
+}

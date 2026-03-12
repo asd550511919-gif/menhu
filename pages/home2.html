@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanus Travel - 首页 2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Albert+Sans:wght@400;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/common-header.css">
+    <link rel="stylesheet" href="../css/nav-widget.css">
+    <link rel="stylesheet" href="../css/nav-widget-siena.css">
+    <link rel="stylesheet" href="../css/siena-btn.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .page-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .frame3-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-origin: center center;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .frame3-wrapper.fade-out {
+            opacity: 0;
+            transform: scale(1.1) !important;
+        }
+
+        .frame3 {
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background-image: url(../images/home2-bg.png);
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        .frame {
+            display: flex;
+            position: absolute;
+            top: -351px;
+            left: -316px;
+            align-items: flex-start;
+            padding: 351px 432px 54px 316px;
+            width: 2668px;
+            height: 1501px;
+        }
+
+        .rectangle5 {
+            opacity: 0.3;
+            background: #000000;
+            width: 1920px;
+            height: 1096px;
+        }
+
+        .autoWrapper4 {
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            align-items: flex-start;
+            align-self: stretch;
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        .autoWrapper {
+            position: relative;
+            margin-left: 23px;
+            width: 1920px;
+            height: 313px;
+        }
+
+        .rectangle1 {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            align-items: flex-start;
+            padding: 52px 845px 239px 885px;
+            width: 1920px;
+            height: 313px;
+            background-image: linear-gradient(180deg, #000000 0%, #00000000 100%);
+        }
+
+        .frame2 {
+            width: 190px;
+            height: 22px;
+            overflow: hidden;
+        }
+
+        .text {
+            position: absolute;
+            bottom: -459px;
+            left: 163px;
+            width: 722px;
+            height: 99px;
+            line-height: 99px;
+            letter-spacing: 2.1px;
+            color: #ffffff;
+            font-family: "Abhaya Libre Medium", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 70px;
+        }
+
+        .wHentravelbecomesamo {
+            position: absolute;
+            bottom: -365px;
+            left: 163px;
+            width: 825px;
+            height: 376px;
+            line-height: 99px;
+            letter-spacing: 3px;
+            color: #ffffff;
+            font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 100px;
+            font-weight: 800;
+        }
+
+        .autoWrapper2 {
+            position: relative;
+            margin-left: 1064px;
+            width: 725px;
+            height: 270px;
+        }
+
+        .text2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 725px;
+            height: 270px;
+            line-height: 40px;
+            letter-spacing: 0.72px;
+            color: #ffffff;
+            font-family: "PingFang HK", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .ratherThanAPrivateTr {
+            position: absolute;
+            bottom: -199px;
+            left: 0;
+            width: 725px;
+            height: 270px;
+            line-height: 26px;
+            letter-spacing: 0.6px;
+            color: #ffffff;
+            font-family: "PingFang HK", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+
+        .autoWrapper3 {
+            position: relative;
+            margin-top: 200px;
+            width: 1920px;
+            height: 313px;
+        }
+
+        .line2 {
+            position: absolute;
+            top: 32px;
+            left: 116px;
+            background: #ffffff;
+            width: 33px;
+            height: 2px;
+            transform: rotate(90deg);
+        }
+
+        .subtract {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0;
+            width: 181px;
+            height: 64px;
+            background-image: url(../images/home2-btn-bg.svg);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .text3 {
+            width: 92px;
+            height: 55px;
+            line-height: 55px;
+            letter-spacing: 0.66px;
+            color: #ffffff;
+            font-family: "Abhaya Libre Medium", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 22px;
+            margin-left: 22px;
+        }
+
+        .arrow3 {
+            width: 14px;
+            height: 14px;
+            margin-left: 30px;
+            border-right: 3px solid #ffffff;
+            border-bottom: 3px solid #ffffff;
+            transform: rotate(-45deg);
+        }
+
+        .group1, .group2, .group3 {
+            position: absolute;
+            top: 48px;
+            width: 181px;
+            height: 64px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .group1 {
+            left: 662px;
+        }
+
+        .group2 {
+            left: 912px;
+        }
+
+        .group3 {
+            left: 1162px;
+        }
+    </style>
+    <script>
+        function scalePage() {
+            const targetWidth = 1920;
+            const targetHeight = 1080;
+            
+            // 使用实际可用的 CSS 像素尺寸
+            const actualWidth = window.innerWidth;
+            const actualHeight = window.innerHeight;
+            
+            const scaleX = actualWidth / targetWidth;
+            const scaleY = actualHeight / targetHeight;
+            const scale = Math.min(scaleX, scaleY);
+            
+            const wrapper = document.querySelector('.frame3-wrapper');
+            const frame3 = document.querySelector('.frame3');
+            
+            if (wrapper && frame3) {
+                // 应用缩放
+                wrapper.style.transform = 'scale(' + scale + ')';
+                
+                // 设置 wrapper 的尺寸为缩放后的尺寸
+                wrapper.style.width = targetWidth + 'px';
+                wrapper.style.height = targetHeight + 'px';
+                
+                // 确保 frame3 不受影响
+                frame3.style.transform = 'none';
+                
+                // 添加淡入效果
+                wrapper.style.opacity = '0';
+                setTimeout(function() {
+                    wrapper.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    wrapper.style.opacity = '1';
+                }, 50);
+            }
+        }
+        
+        // 页面跳转函数
+        function navigateToPage(pageName) {
+            const wrapper = document.querySelector('.frame3-wrapper');
+            if (wrapper) {
+                wrapper.classList.add('fade-out');
+                setTimeout(function() {
+                    window.location.href = pageName + '.html';
+                }, 600);
+            }
+        }
+        
+        window.addEventListener('load', scalePage);
+        window.addEventListener('resize', scalePage);
+    </script>
+</head>
+<body>
+    <div class="page-container">
+    <div class="frame3-wrapper">
+    <div class="frame3">
+        <!-- 共用头部 -->
+        <div class="common-header">
+            <div class="header-top-bar">
+                <img src="../images/home2-logo.svg" class="header-logo" alt="Logo">
+            </div>
+            <p class="header-world">World</p>
+            <p class="header-travel">Travel</p>
+        </div>
+        
+        <!-- 背景装饰 -->
+        <div class="frame">
+            <div class="rectangle5"></div>
+        </div>
+        
+        <!-- 主要内容 -->
+        <div class="autoWrapper4">
+            <div class="autoWrapper">
+                <div class="rectangle1">
+                    <img src="../images/home2-logo.svg" class="frame2" alt="Logo">
+                </div>
+                <p class="text">当旅行变成电影时</p>
+                <p class="wHentravelbecomesamo">
+                    WHEN TRAVEL<br>
+                    BECOMES<br>
+                    A MOVIE
+                </p>
+            </div>
+            <div class="autoWrapper2">
+                <p class="text2">
+                    与其说我们是私人旅行定制公司，我们更像是电影制作公司，每一次出行都应是一场独一无二的电影，反规模化、反效率化的。我们相信一次好的旅行是活一次新的人生，如果你也对现在的旅游感到麻木，那么是时候跟着我们改变您对奢华和旅行的所有认知了
+                </p>
+                <p class="ratherThanAPrivateTr">
+                    Rather than a private travel design company, we see ourselves as a film
+                    studio.Every journey we create is a singular production—never
+                    replicated, never scaled, never rushed.We stand against standardization
+                    and efficiency for efficiency's sake.<br>
+                    Because a truly great journey is not about ticking destinations off a
+                    list,but about living an entirely new life, if only for a moment.<br>
+                    If modern travel has left you feeling indifferent,perhaps it is time to
+                    travel with us—and rethink everything you thought you knew about luxury
+                    and the meaning of a journey.
+                </p>
+            </div>
+            <div class="autoWrapper3">
+                <div class="group1" onclick="navigateToPage('works')">
+                    <div class="siena-btn">
+                        <div class="siena-btn-bg">
+                            <svg viewBox="0 0 181 64">
+                                <path class="siena-btn-border" d="M 8 0 L 125 0 A 5 5 0 0 0 135 0 L 173 0 Q 181 0 181 8 L 181 56 Q 181 64 173 64 L 135 64 A 5 5 0 0 0 125 64 L 8 64 Q 0 64 0 56 L 0 8 Q 0 0 8 0 Z" />
+                                <line class="siena-btn-line" x1="130" y1="0" x2="130" y2="64"></line>
+                            </svg>
+                        </div>
+                        <div class="siena-btn-content" style="padding: 0 0 0 24px;">
+                            <div class="siena-text-wrapper">
+                                <div class="siena-text-inner">
+                                    <span class="siena-text">作品展示</span>
+                                    <span class="siena-text">作品展示</span>
+                                </div>
+                            </div>
+                            <div class="siena-arrow-wrapper" style="margin-right: 15px;">
+                                <div class="siena-arrow-inner">
+                                    <svg class="siena-arrow-svg primary" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <svg class="siena-arrow-svg secondary" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group2" onclick="navigateToPage('about')">
+                    <div class="siena-btn">
+                        <div class="siena-btn-bg">
+                            <svg viewBox="0 0 181 64">
+                                <path class="siena-btn-border" d="M 8 0 L 125 0 A 5 5 0 0 0 135 0 L 173 0 Q 181 0 181 8 L 181 56 Q 181 64 173 64 L 135 64 A 5 5 0 0 0 125 64 L 8 64 Q 0 64 0 56 L 0 8 Q 0 0 8 0 Z" />
+                                <line class="siena-btn-line" x1="130" y1="0" x2="130" y2="64"></line>
+                            </svg>
+                        </div>
+                        <div class="siena-btn-content" style="padding: 0 0 0 24px;">
+                            <div class="siena-text-wrapper">
+                                <div class="siena-text-inner">
+                                    <span class="siena-text">关于我们</span>
+                                    <span class="siena-text">关于我们</span>
+                                </div>
+                            </div>
+                            <div class="siena-arrow-wrapper" style="margin-right: 15px;">
+                                <div class="siena-arrow-inner">
+                                    <svg class="siena-arrow-svg primary" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <svg class="siena-arrow-svg secondary" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group3" onclick="navigateToPage('faq')">
+                    <div class="siena-btn">
+                        <div class="siena-btn-bg">
+                            <svg viewBox="0 0 181 64">
+                                <path class="siena-btn-border" d="M 8 0 L 125 0 A 5 5 0 0 0 135 0 L 173 0 Q 181 0 181 8 L 181 56 Q 181 64 173 64 L 135 64 A 5 5 0 0 0 125 64 L 8 64 Q 0 64 0 56 L 0 8 Q 0 0 8 0 Z" />
+                                <line class="siena-btn-line" x1="130" y1="0" x2="130" y2="64"></line>
+                            </svg>
+                        </div>
+                        <div class="siena-btn-content" style="padding: 0 0 0 24px;">
+                            <div class="siena-text-wrapper">
+                                <div class="siena-text-inner">
+                                    <span class="siena-text">问答相关</span>
+                                    <span class="siena-text">问答相关</span>
+                                </div>
+                            </div>
+                            <div class="siena-arrow-wrapper" style="margin-right: 15px;">
+                                <div class="siena-arrow-inner">
+                                    <svg class="siena-arrow-svg primary" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <svg class="siena-arrow-svg secondary" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 共用底部 -->
+        <div class="common-footer">
+            <div class="footer-content">
+                <p class="footer-copyright">© Arcanus Travel— All rights reserved</p>
+                <p class="footer-site-by">Site by: Arcanus Travel</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+<div class="nav-widget">
+        <div class="nav-widget-container">
+            <div class="nav-widget-item nav-widget-menu-btn">
+                <div data-hover="bggrow" data-menu="maintrigger" class="mmenu-col btn">
+                    <div class="menu-icon-w">
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                    </div>
+                    <div class="menu-dots-w">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 103 103" width="100%">
+                            <path d="M103 94V9a9 9 0 0 1-9-9H9a9 9 0 0 1-9 9v85a9 9 0 0 1 9 9h85a9 9 0 0 1 9-9Z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="home1.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">首页</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="works.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">作品展示</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="about.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">关于我们</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="faq.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">问答相关</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/nav-widget.js"></script>
+    <script src="../js/common-interactions.js"></script>
+    </body>
+</html>

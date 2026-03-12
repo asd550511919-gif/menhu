@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品详情 - Arcanus Travel</title>
+    <link rel="stylesheet" href="../css/nav-widget.css">
+    <link rel="stylesheet" href="../css/nav-widget-siena.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { width: 100%; height: 100%; overflow: hidden; background: #000; }
+        .carousel { width: 100%; height: 100%; position: relative; }
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .slide.active { opacity: 1; z-index: 1; }
+    </style>
+</head>
+<body>
+    <div class="carousel" id="carousel"></div>
+
+    <div class="nav-widget">
+        <div class="nav-widget-container">
+            <div class="nav-widget-item nav-widget-menu-btn">
+                <div data-hover="bggrow" data-menu="maintrigger" class="mmenu-col btn">
+                    <div class="menu-icon-w">
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                    </div>
+                    <div class="menu-dots-w">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 103 103" width="100%">
+                            <path d="M103 94V9a9 9 0 0 1-9-9H9a9 9 0 0 1-9 9v85a9 9 0 0 1 9 9h85a9 9 0 0 1 9-9Z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="home1.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">首页</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="works.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">作品展示</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="about.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">关于我们</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="faq.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">问答相关</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/nav-widget.js"></script>
+    <script src="../js/common-interactions.js"></script>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const workId = urlParams.get('id');
+        // Check if we came from origin gallery (passed via query param or inferred)
+        // A better way is to pass a 'from' parameter, e.g., work-detail.html?id=xxx&from=origin
+        const fromPage = urlParams.get('from') || 'mirada'; 
+
+        // Configuration
+        const SLIDE_DURATION = 5000; // 5 seconds per slide
+        
+        async function loadWork() {
+            try {
+                // Fetch all works and find the one matching ID
+                // Ideally we'd have a specific endpoint but filtering works fine for small data
+                const response = await fetch('http://localhost:3000/api/works');
+                const works = await response.json();
+                const work = works.find(w => w.id === workId);
+
+                const fallbackPage = fromPage === 'origin' ? 'origin-gallery.html' : 'mirada-gallery.html';
+
+                if (!work) {
+                    alert('作品不存在');
+                    window.location.href = fallbackPage;
+                    return;
+                }
+
+                if (!work.detailImages || work.detailImages.length === 0) {
+                    alert('该作品暂无详情图片');
+                    window.location.href = fallbackPage;
+                    return;
+                }
+
+                initCarousel(work.detailImages, fallbackPage);
+
+            } catch (error) {
+                console.error('Failed to load work:', error);
+                alert('加载失败，请稍后重试');
+            }
+        }
+
+        function initCarousel(images, returnUrl) {
+            const container = document.getElementById('carousel');
+            
+            // Create slides
+            images.forEach((imgSrc, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                if (index === 0) slide.classList.add('active');
+                
+                // Construct path: API returns "images/xxx.png", page is in "pages/", so we need "../images/xxx.png"
+                slide.style.backgroundImage = `url('../${imgSrc}')`; 
+                
+                container.appendChild(slide);
+            });
+
+            let currentIndex = 0;
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+
+            const interval = setInterval(() => {
+                // Check if we just finished showing the last slide
+                // The requirement is "After playing the last picture... automatically return".
+                // This usually means showing the last picture for its duration, THEN returning.
+                
+                if (currentIndex >= totalSlides - 1) {
+                    // We are at the last slide, and the interval just fired (time's up for the last slide)
+                    clearInterval(interval);
+                    window.location.href = returnUrl;
+                    return;
+                }
+
+                // Transition to next slide
+                slides[currentIndex].classList.remove('active');
+                currentIndex++;
+                slides[currentIndex].classList.add('active');
+
+            }, SLIDE_DURATION);
+        }
+
+        // Initialize
+        if (workId) {
+            loadWork();
+        } else {
+            // No ID provided, go back (default to mirada, though ideally we wouldn't be here)
+            window.location.href = 'mirada-gallery.html';
+        }
+    </script>
+</body>
+</html>

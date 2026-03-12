@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理 - 登录</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Albert+Sans:wght@400;800&family=Abhaya+Libre+Medium&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/nav-widget.css">
+    <style>
+        body { 
+            font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            background-image: url('../.figma/image/mmk8bemy-qjbu3dn.png');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* 遮罩层，让文字更清晰 */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
+        }
+
+        .login-box { 
+            position: relative;
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 3rem 2.5rem; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+            width: 360px; 
+            z-index: 1;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        
+        .logo-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 12px;
+        }
+        
+        .logo-area img {
+            height: 28px;
+        }
+        
+        h2 { 
+            margin: 0; 
+            font-family: "Abhaya Libre Medium", serif;
+            font-size: 24px;
+            color: #333;
+            letter-spacing: 1px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+        
+        input { 
+            width: 100%; 
+            padding: 0.8rem 1rem; 
+            border: 1px solid #ddd; 
+            border-radius: 6px; 
+            box-sizing: border-box; 
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #000;
+            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+        }
+        
+        button { 
+            width: 100%; 
+            padding: 0.9rem; 
+            background: #000; 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+        
+        button:hover { 
+            background: #333; 
+            transform: translateY(-1px);
+        }
+        
+        .error { 
+            color: #d9534f; 
+            font-size: 0.9rem; 
+            margin-bottom: 1rem; 
+            display: none; 
+            background: rgba(217, 83, 79, 0.1);
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <div class="logo-area">
+            <img src="../images/origin-logo.svg" alt="Logo">
+        </div>
+        <p class="error" id="error-msg"></p>
+        <form id="login-form">
+            <div class="form-group">
+                <input type="text" id="username" placeholder="用户名 / Username" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" placeholder="密码 / Password" required>
+            </div>
+            <button type="submit">登录 / Login</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('error-msg');
+
+            try {
+                const res = await fetch('http://localhost:3000/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    localStorage.setItem('adminToken', data.token);
+                    window.location.href = 'index.html';
+                } else {
+                    errorMsg.textContent = '用户名或密码错误';
+                    errorMsg.style.display = 'block';
+                }
+            } catch (err) {
+                errorMsg.textContent = '登录失败，请检查服务器';
+                errorMsg.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

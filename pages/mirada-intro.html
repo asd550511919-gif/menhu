@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mirada Travel Brand Manual - Arcanus Travel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Albert+Sans:wght@400;800&family=Abhaya+Libre+Medium&family=Cormorant+SC&family=Satsuki+Gendai+Mincho&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/common-header.css">
+    <link rel="stylesheet" href="../css/nav-widget.css">
+    <link rel="stylesheet" href="../css/nav-widget-siena.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .frame-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-origin: center center;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .frame-wrapper.fade-out {
+            opacity: 0;
+            transform: scale(1.1) !important;
+        }
+
+        .frame-content {
+            position: relative;
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 顶部共用头部样式覆盖 */
+        .common-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .intro-image {
+            width: auto;
+            height: auto;
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        /* 页脚 */
+        .footer {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 60px;
+            z-index: 20;
+        }
+
+        .footer-text {
+            color: #666;
+            font-family: "Albert Sans", sans-serif;
+            font-size: 16px;
+        }
+
+        /* Carousel Styles */
+        #carousel-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 200;
+            background: #000;
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        #carousel-container.active {
+            opacity: 1;
+        }
+
+        .carousel-slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+        }
+        
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+    </style>
+    <script>
+        const API_BASE = 'http://localhost:3000/api/works';
+
+        function scalePage() {
+            const targetWidth = 1920;
+            const targetHeight = 1080;
+            
+            const actualWidth = window.innerWidth;
+            const actualHeight = window.innerHeight;
+            
+            const scaleX = actualWidth / targetWidth;
+            const scaleY = actualHeight / targetHeight;
+            const scale = Math.min(scaleX, scaleY);
+            
+            const wrapper = document.querySelector('.frame-wrapper');
+            const content = document.querySelector('.frame-content');
+            
+            if (wrapper && content) {
+                wrapper.style.transform = 'scale(' + scale + ')';
+                wrapper.style.width = targetWidth + 'px';
+                wrapper.style.height = targetHeight + 'px';
+                content.style.transform = 'none';
+                
+                wrapper.style.opacity = '0';
+                setTimeout(function() {
+                    wrapper.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    wrapper.style.opacity = '1';
+                }, 50);
+            }
+        }
+        
+        function navigateToPage(pageName) {
+            const wrapper = document.querySelector('.frame-wrapper');
+            if (wrapper) {
+                wrapper.classList.add('fade-out');
+                setTimeout(function() {
+                    window.location.href = pageName + '.html';
+                }, 600);
+            }
+        }
+
+        // 解析 URL 参数
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        async function initContent() {
+            const type = getQueryParam('type');
+            console.log('Current Type:', type);
+            // Future logic to load specific content or redirect to carousel can go here
+            if (!type) return;
+
+            // Wait 3 seconds then start carousel
+            setTimeout(() => startCarousel(type), 3000);
+        }
+
+        async function startCarousel(type) {
+            // Determine category based on type
+            let category = '';
+            if (type === 'brand') category = 'brand_manual';
+            else if (type === 'resource') category = 'resource';
+            else return;
+
+            // Fetch images
+            try {
+                // We are on mirada-intro, so brand is mirada
+                const response = await fetch(`${API_BASE}?brand=mirada&category=${category}`);
+                const data = await response.json();
+                
+                if (data && data.length > 0) {
+                    // Assuming there might be multiple items, we concatenate all detailImages
+                    let images = [];
+                    data.forEach(item => {
+                        if (item.detailImages && item.detailImages.length > 0) {
+                            images = images.concat(item.detailImages);
+                        }
+                    });
+
+                    if (images.length > 0) {
+                        playCarousel(images);
+                    }
+                }
+            } catch (e) {
+                console.error("Failed to load carousel data", e);
+            }
+        }
+
+        function playCarousel(images) {
+            const container = document.getElementById('carousel-container');
+            container.innerHTML = '';
+            
+            // Create slides
+            images.forEach((src, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                const img = document.createElement('img');
+                img.src = `../${src}`;
+                slide.appendChild(img);
+                container.appendChild(slide);
+            });
+
+            // Show container
+            container.style.display = 'block';
+            // Force reflow
+            container.offsetHeight; 
+            container.classList.add('active');
+
+            let currentIndex = 0;
+            const slides = container.querySelectorAll('.carousel-slide');
+            const total = slides.length;
+            const intervalTime = 3000; // 3 seconds per slide
+
+            function showSlide(index) {
+                slides.forEach(s => s.classList.remove('active'));
+                slides[index].classList.add('active');
+            }
+
+            // Show first slide immediately
+            showSlide(0);
+
+            const interval = setInterval(() => {
+                currentIndex++;
+                if (currentIndex >= total) {
+                    clearInterval(interval);
+                    finishCarousel();
+                } else {
+                    showSlide(currentIndex);
+                }
+            }, intervalTime);
+        }
+
+        function finishCarousel() {
+            const container = document.getElementById('carousel-container');
+            container.classList.remove('active');
+            setTimeout(() => {
+                container.style.display = 'none';
+                // Jump back to mirada.html
+                window.location.href = 'mirada.html';
+            }, 1000); // Wait for fade out
+        }
+        
+        window.addEventListener('load', function() {
+            scalePage();
+            initContent();
+        });
+        window.addEventListener('resize', scalePage);
+    </script>
+</head>
+<body>
+    <div class="page-container">
+        <div class="frame-wrapper">
+            <div class="frame-content">
+                <!-- 共用头部 -->
+                <div class="common-header">
+                    <div class="header-top-bar">
+                        <img src="../images/mirada-logo.svg" class="header-logo" alt="Logo">
+                    </div>
+                    <p class="header-world">World</p>
+                    <p class="header-travel">Travel</p>
+                </div>
+
+                <!-- 背景图片 -->
+                <img src="../images/xpnr.png" alt="Mirada Intro" class="intro-image">
+
+                <!-- 页脚 -->
+                <div class="footer">
+                    <div class="footer-text">© Arcanus Travel— All rights reserved</div>
+                    <div class="footer-text">Site by: Arcanus Travel</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 导航挂件 -->
+    <div id="carousel-container"></div>
+    <div class="nav-widget">
+        <div class="nav-widget-container">
+            <div class="nav-widget-item nav-widget-menu-btn">
+                <div data-hover="bggrow" data-menu="maintrigger" class="mmenu-col btn">
+                    <div class="menu-icon-w">
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                    </div>
+                    <div class="menu-dots-w">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 103 103" width="100%">
+                            <path d="M103 94V9a9 9 0 0 1-9-9H9a9 9 0 0 1-9 9v85a9 9 0 0 1 9 9h85a9 9 0 0 1 9-9Z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="home1.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">首页</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="works.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">作品展示</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="about.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">关于我们</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="faq.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">问答相关</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/nav-widget.js"></script>
+    <script src="../js/common-interactions.js"></script>
+</body>
+</html>

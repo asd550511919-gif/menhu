@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanus Travel - 首页</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Albert+Sans:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/common-header.css">
+    <link rel="stylesheet" href="../css/nav-widget.css">
+    <link rel="stylesheet" href="../css/nav-widget-siena.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .page-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .frame2-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-origin: center center;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .frame2-wrapper.fade-out {
+            opacity: 0;
+            transform: scale(1.1) !important;
+        }
+
+        .frame2 {
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 40px 46px 30px 61px;
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .autoWrapper {
+            position: absolute;
+            top: -274px;
+            left: -402px;
+            width: 2701px;
+            height: 1424px;
+        }
+
+        .jimeng2026011326761 {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 143px;
+            align-items: flex-start;
+            padding: 274px 353px 837px 259px;
+            width: 2532px;
+            height: 1424px;
+            background-image: url(../images/home1-bg.png);
+            background-position: 1px -52px;
+            background-size: 100% 100.02%;
+            background-repeat: no-repeat;
+        }
+
+        .autoWrapper4 {
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            align-items: flex-start;
+            align-self: stretch;
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        .autoWrapper2 {
+            display: flex;
+            align-items: center;
+            align-self: stretch;
+            justify-content: space-between;
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        .group11 {
+            margin-top: 793px;
+            margin-left: 876px;
+            width: 82px;
+            height: 82px;
+            cursor: pointer;
+            z-index: 10;
+            position: relative;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .group11:hover {
+            transform: scale(1.1);
+        }
+
+        .eNter {
+            margin: 16px 0px 0px 887px;
+            line-height: 31px;
+            letter-spacing: -0.48px;
+            color: #ffffff;
+            font-family: Abel, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10;
+            position: relative;
+            transition: letter-spacing 0.3s ease, color 0.3s ease;
+        }
+
+        .eNter:hover {
+            letter-spacing: 4px;
+            color: #ffdb58;
+        }
+
+        .enter-button {
+            position: absolute;
+            left: 920px;
+            top: 840px;
+            width: 120px;
+            height: 180px;
+            z-index: 1;
+        }
+    </style>
+    <script>
+        function scalePage() {
+            const targetWidth = 1920;
+            const targetHeight = 1080;
+            
+            // 使用实际可用的 CSS 像素尺寸
+            const actualWidth = window.innerWidth;
+            const actualHeight = window.innerHeight;
+            
+            const scaleX = actualWidth / targetWidth;
+            const scaleY = actualHeight / targetHeight;
+            const scale = Math.min(scaleX, scaleY);
+            
+            const wrapper = document.querySelector('.frame2-wrapper');
+            const frame2 = document.querySelector('.frame2');
+            
+            if (wrapper && frame2) {
+                // 应用缩放
+                wrapper.style.transform = 'scale(' + scale + ')';
+                
+                // 设置 wrapper 的尺寸为缩放后的尺寸
+                wrapper.style.width = targetWidth + 'px';
+                wrapper.style.height = targetHeight + 'px';
+                
+                // 确保 frame2 不受影响
+                frame2.style.transform = 'none';
+            }
+        }
+        
+        window.addEventListener('load', scalePage);
+        window.addEventListener('resize', scalePage);
+        
+        // 添加动画过渡效果
+        function navigateToHome2() {
+            const wrapper = document.querySelector('.frame2-wrapper');
+            if (wrapper) {
+                // 添加淡出效果
+                wrapper.classList.add('fade-out');
+                
+                // 等待动画完成后跳转
+                setTimeout(function() {
+                    window.location.href = 'home2.html';
+                }, 600);
+            } else {
+                // 如果没有 wrapper，直接跳转
+                window.location.href = 'home2.html';
+            }
+        }
+        
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                navigateToHome2();
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="page-container">
+    <div class="frame2-wrapper">
+    <div class="frame2">
+        <!-- 共用头部 -->
+        <div class="common-header">
+            <div class="header-top-bar">
+                <img src="../images/home1-logo.svg" class="header-logo" alt="Logo">
+            </div>
+            <p class="header-world">World</p>
+            <p class="header-travel">Travel</p>
+        </div>
+        
+        <!-- 背景装饰 -->
+        <div class="autoWrapper">
+            <div class="jimeng2026011326761">
+                <div class="rectangle1">
+                    <img src="../images/home1-logo.svg" class="frame" alt="Logo">
+                </div>
+            </div>
+            <div class="gradient-rect-top"></div>
+            <div class="gradient-rect-left"></div>
+            <div class="gradient-rect-right"></div>
+        </div>
+        
+        <!-- 主要内容 -->
+        <div class="autoWrapper4">
+            <div class="autoWrapper2">
+                <p class="world">World</p>
+                <p class="world">Travel</p>
+            </div>
+            <img src="../images/home1-arrow.svg" class="group11" alt="Arrow" onclick="navigateToHome2()">
+            <p class="eNter" onclick="navigateToHome2()">ENTER</p>
+        </div>
+        
+        <!-- 共用底部 -->
+        <div class="common-footer">
+            <div class="footer-content">
+                <p class="footer-copyright">© Arcanus Travel— All rights reserved</p>
+                <p class="footer-site-by">Site by: Arcanus Travel</p>
+            </div>
+        </div>
+        
+        <div class="enter-button" onclick="navigateToHome2()"></div>
+    </div>
+    </div>
+    </div>
+<div class="nav-widget">
+        <div class="nav-widget-container">
+            <div class="nav-widget-item nav-widget-menu-btn">
+                <div data-hover="bggrow" data-menu="maintrigger" class="mmenu-col btn">
+                    <div class="menu-icon-w">
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                        <div data-menu="iconline" class="menu-icon-line"></div>
+                    </div>
+                    <div class="menu-dots-w">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 103 103" width="100%">
+                            <path d="M103 94V9a9 9 0 0 1-9-9H9a9 9 0 0 1-9 9v85a9 9 0 0 1 9 9h85a9 9 0 0 1 9-9Z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="home1.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">首页</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="works.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">作品展示</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="about.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">关于我们</span>
+                </div>
+            </div>
+            <div class="nav-widget-divider"></div>
+            <div class="nav-widget-item" data-page="faq.html">
+                <div class="nav-widget-text-wrapper">
+                    <span class="nav-widget-text">问答相关</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/nav-widget.js"></script>
+    <script src="../js/common-interactions.js"></script>
+    </body>
+</html>

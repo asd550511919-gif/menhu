@@ -1,0 +1,112 @@
+/* 共用头部样式 */
+.common-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 313px;
+    z-index: 100;
+}
+
+.header-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 52px 845px 239px 885px;
+    background-image: linear-gradient(180deg, #000000 0%, #00000000 100%);
+}
+
+.header-logo {
+    width: 190px;
+    height: 22px;
+    overflow: hidden;
+}
+
+.header-world {
+    position: absolute;
+    top: 40px;
+    left: 61px;
+    line-height: 24px;
+    letter-spacing: -0.4px;
+    color: #9a9a9a;
+    font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+.header-travel {
+    position: absolute;
+    top: 35px;
+    right: 61px;
+    line-height: 24px;
+    letter-spacing: -0.4px;
+    color: #9a9a9a;
+    font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+/* 共用底部样式 */
+.common-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 313px;
+    z-index: 1;
+}
+
+.footer-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 238px;
+    padding: 0 61px;
+}
+
+.footer-copyright {
+    line-height: 24px;
+    letter-spacing: -0.4px;
+    color: #9a9a9a;
+    font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+.footer-site-by {
+    width: 547px;
+    text-align: right;
+    letter-spacing: -0.4px;
+    color: #9a9a9a;
+    font-family: "Albert Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+/* 装饰性渐变矩形 */
+.gradient-rect-top {
+    position: absolute;
+    top: 1057px;
+    left: 379px;
+    opacity: 0.33;
+    width: 1920px;
+    height: 313px;
+    transform: rotate(-180deg);
+    background-image: linear-gradient(180deg, #000000 0%, #00000000 100%);
+}
+
+.gradient-rect-left {
+    position: absolute;
+    top: 649px;
+    left: 0;
+    width: 1131px;
+    height: 381px;
+    transform: rotate(-90deg);
+    background-image: linear-gradient(180deg, #000000 0%, #00000000 100%);
+}
+
+.gradient-rect-right {
+    position: absolute;
+    top: 638px;
+    right: 0;
+    width: 1111px;
+    height: 353px;
+    transform: rotate(90deg);
+    background-image: linear-gradient(180deg, #000000 0%, #00000000 100%);
+}
